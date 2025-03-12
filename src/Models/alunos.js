@@ -20,7 +20,7 @@ const alunosSchema = new mongoose.Schema({
     },
     dataCadastro:{
         type:Date,
-        default: Data.now,
+        default: Date.now,
     },
     statusPagamento:{
         type: Boolean,

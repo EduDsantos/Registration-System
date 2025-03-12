@@ -1,13 +1,16 @@
 require("dotenv").config()
 const express = require('express')
 const connectDB = require('./config/dB')
+const routeAlunos = require('./Routes/alunosRoutes')
+
 
 const app = express()
+app.use(express.json())
 const port = process.env.port || 5000
+app.use("/alunos", routeAlunos)
 
 connectDB()
 
-app.use(express.json())
 
 app.get('/', function(req,res){
     res.send('Servidor Rodando')
