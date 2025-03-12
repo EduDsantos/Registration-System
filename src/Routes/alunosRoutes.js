@@ -9,8 +9,8 @@ router.get("/", listarAlunos)
 //router.get("/:id", buscarAlunoPorId)
 router.get("/:nome",buscarAlunoPorNome)
 
-router.put("/:id", atualizarAluno)
+router.put("/:nome", atualizarAluno)
 
-router.delete("/", excluirAluno)
+router.delete("/:nome", excluirAluno)
 
 module.exports= router

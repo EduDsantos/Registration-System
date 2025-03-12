@@ -60,8 +60,9 @@ const buscarAlunoPorNome = async (req, res) => {
 
 
 const atualizarAluno = async (req, res) => {
+    const{nome}= req.params
     try {
-        const alunoAtualizado = await aluno.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        const alunoAtualizado = await aluno.findByIdAndUpdate({nome}, req.body, { new: true })
         if (!alunoAtualizado) {
             return res.status(404).json({ message: "Aluno não encontrado" })
         }
@@ -73,8 +74,9 @@ const atualizarAluno = async (req, res) => {
 }
 
 const excluirAluno = async (req, res) => {
+    const {nome}= req.params
     try {
-        const alunoExcluido = await aluno.findByIdAndDelete(req.params.id)
+        const alunoExcluido = await aluno.findOneAndDelete({nome})
         if (!alunoExcluido) {
             return res.status(404).json({ message: "Aluno nao encontrado" })
         }
