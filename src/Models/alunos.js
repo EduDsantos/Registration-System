@@ -18,6 +18,15 @@ const alunosSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    cpf:{
+        type:Number,
+        required:true,
+        unique: true
+    },
+    resMedic:{
+        type: String,
+        required: true
+    },
     dataCadastro:{
         type:Date,
         default: Date.now,

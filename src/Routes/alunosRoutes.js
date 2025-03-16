@@ -13,4 +13,4 @@ router.put("/:nome", atualizarAluno)
 
 router.delete("/:nome", excluirAluno)
 
-module.exports= router
+module.exports = router

@@ -4,14 +4,14 @@ const express = require('express')
 
 const criarAluno = async (req, res) => {
     try {
-        const { nome, idade, email, telefone, faixa } = req.body;
+        const { nome, idade, email, telefone, faixa, cpf , resMedic } = req.body;
 
         const alunosExistentes = await aluno.findOne({ email })
         if (alunosExistentes) {
             return res.status(400).json({ message: "Aluno com email ja cadastrado" })
         }
 
-        const novoAluno = new aluno({ nome, idade, email, telefone, faixa })
+        const novoAluno = new aluno({ nome, idade, email, telefone, faixa, cpf , resMedic })
         await novoAluno.save()
 
         res.status(201).json({ message: "Aluno cadastrado com sucesso!", aluno: novoAluno })
