@@ -25,7 +25,7 @@ const alunosSchema = new mongoose.Schema({
     },
     resMedic:{
         type: String,
-        required: true
+        required: false
     },
     dataCadastro:{
         type:Date,
