@@ -2,7 +2,7 @@ const express = require("express")
 const router = express.Router()
 const{criarAluno, listarAlunos, /*buscarAlunoPorId*/ buscarAlunoPorNome, atualizarAluno,excluirAluno} = require("../Controllers/alunoController")
 
-router.post("/", criarAluno)
+router.post("/criarAluno", criarAluno)
 
 router.get("/", listarAlunos)
 

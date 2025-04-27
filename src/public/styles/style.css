@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    box-sizing: 0%;
+    padding: 0%;
+}
+
+body{
+    position: absolute;
+}
+form{
+    position: relative;
+    left: 500%;
+    top: 100px;
+    background-color: bisque;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+form input{
+    display: block;
+}
