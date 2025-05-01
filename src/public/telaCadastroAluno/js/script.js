@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () =>{
         const cpf = document.getElementById('cpf')
         const restricao = document.getElementById('restmedico')
         const dataCadastro = document.getElementById('dataCadastro')
+        const faixa = document.getElementById('faixa')
         const pagamento = document.getElementById('statusPagamento')
 
-        const alunos = {nome, idade, email, telefone, cpf, restricao, dataCadastro, pagamento}
+        const alunos = {nome, idade, email, telefone, cpf, restricao, dataCadastro, pagamento, faixa}
 
         // try{
         //     const resposta = await fetch("/criarAluno", {method:"POST" } )
