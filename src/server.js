@@ -1,22 +1,19 @@
 require("dotenv").config()
 const express = require('express')
 const connectDB = require('./config/dB')
-const routeAlunos = require('./Routes/alunosRoutes')
+const alunosRoutes = require('./Routes/alunosRoutes')
+const treinadorRoutes = require('./Routes/treinadorRoutes')
 
 
 const app = express()
 app.use(express.json())
-const port = process.env.port || 5000
-app.use("/alunos", routeAlunos)
-app.use(express.static ("./public"))
+
 
 connectDB()
 
 
-app.get('/', function(req,res){
-    res.send('Servidor Rodando')
-})
+app.use('/alunos', alunosRoutes)
+app.use('/treinador', treinadorRoutes)
 
-app.listen(port, ()=>{
-    console.log(`Servidor rodando na porta: ${port}`)
-})
+const port = process.env.PORT || 5000
+app.listen(port, ()=>{console.log(`Servidor rodando na porta: ${port}`)})
