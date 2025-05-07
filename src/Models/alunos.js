@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const alunosSchema = new mongoose.Schema({
-    nome:{ type: String, required: true,},
+    name:{ type: String, required: true,},
     idade:{ type: Number, required: true},       
     email:{ type: String, required: true, unique: true},        
     telefone:{ type: String, required: true},
