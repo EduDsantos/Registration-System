@@ -1,8 +1,10 @@
 const bcrypt = require('bcryptjs')
-const { loginService } = require('../Service/authService')
+const { loginService, generateToken } = require('../Service/authService')
+
 
 const login = async (req, res) =>{
-    const {email, senha} = req.body
+    const {email, senha} = req.body 
+
     try{
         const treinador = await loginService(email)
 
@@ -16,8 +18,9 @@ const login = async (req, res) =>{
         if(!senhaIsValid){
             return res.status(400).send({message: "Senha errada"})
         }
-    
-        res.send("Login ok")
+        
+        const token = generateToken(treinador.id)
+        res.send({token})
     }catch(error){
         res.status(500).send(error.message)
     }

@@ -1,9 +1,15 @@
 const alunoService = require('../Service/alunoService')
+const authService = require('../Service/authService')
 
 async function criar(req, res) {
+
+   
+
     try {
         const aluno = await alunoService.criarAluno(req.body)
         res.status(200).json(aluno)
+        const {authorization} = req.headers
+        console.log(authorization)
     } catch (error) {
         res.status(400).json({ erro: error.message })
     }
