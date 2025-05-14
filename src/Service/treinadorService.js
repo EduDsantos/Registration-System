@@ -1,11 +1,16 @@
 const Treinador = require('../Models/treinador')
+const bcrypt = require('bcryptjs')
 
 async function criarTreinador(dados) {
     const treinadorExistente = await Treinador.findOne({ email: dados.email })
     if (treinadorExistente) throw new Error("Já existe um treinador com esse e-mail")
 
-    const novoTreinador = new Treinador(dados)
+
+    const senhaCriptografada = await bcrypt.hash(dados.senha, 10)
+    const novoTreinador = new Treinador({...dados,senha: senhaCriptografada })
+    
     return await novoTreinador.save()
+
 }
 
 async function listarTreinador() {

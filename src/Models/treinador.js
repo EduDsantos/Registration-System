@@ -11,10 +11,10 @@ const treinadorSchema = new mongoose.Schema({
 
 })
 
-treinadorSchema.pre('save', async function (next) {
-    if (!this.isModified('senha')) return next()
-    this.senha = await bcrypt.hash(this.senha, 10)
-    next()
-})
+// treinadorSchema.pre('save', async function (next) {
+//     if (!this.isModified('senha')) return next()
+//     this.senha = await bcrypt.hash(this.senha, 10)n
+//     next()
+// })
 
 module.exports = mongoose.model("treinador", treinadorSchema)

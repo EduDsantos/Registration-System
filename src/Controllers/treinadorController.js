@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const Treinador = require('../Models/treinador')
 const treinadorService = require('../Service/treinadorService')
-const bcrypt = require('bcryptjs')
 
 async function criar(req, res){
     try{
