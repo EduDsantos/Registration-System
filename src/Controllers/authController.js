@@ -13,7 +13,7 @@ const login = async (req, res) => {
         }
 
         const senhaIsValid = bcrypt.compareSync(senha, treinador.senha)
-        console.log(senhaIsValid)
+        
 
         if (!senhaIsValid) {
             return res.status(400).send({ message: "Senha errada" })
