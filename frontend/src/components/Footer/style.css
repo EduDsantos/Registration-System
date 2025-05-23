@@ -1,0 +1,11 @@
+.footerClass {
+    position: relative;
+    bottom: 20px;
+    display: flex;
+}
+
+footer {
+    margin: auto;
+    color: black;
+
+}

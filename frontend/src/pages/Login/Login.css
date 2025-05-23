@@ -1,0 +1,97 @@
+/* PALHETAS
+    AZUL ESCURO: #0D1B2A;
+    AZUL ESCURO 2: #3d4857;
+    AZUL MAIS OU MENOS ESCURO: #1B263B;
+    AZUL NORMAL: #415A77;
+    AZUL CLARO: #778DA9;
+    TOM DE BRANCO: #E0E1DD.
+*/
+* {
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.Container {
+    /* background-color: black; */
+    height: 100vh;
+    display: flex;
+    background-image: url('../../images/logo.png');
+    background-color: #3d4857;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    color: white;
+
+}
+
+.LoginContainer {
+    font-family: "Roboto", sans-serif;
+    background-color: rgba(224, 225, 221, 0.15);
+    width: 360px;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    height: 500px;
+    box-shadow: 1px 2px 2px black;
+    backdrop-filter: blur(8px);
+
+
+
+}
+
+.form-container {
+    width: 100%;
+    justify-items: baseline;
+
+
+}
+
+label {
+    margin-right: 10px;
+    font-size: 20px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px black;
+    border-radius: 5px;
+    background-color: #e0e1dd46;
+}
+
+.input-value input {
+    padding: 20px;
+    margin: 30px auto;
+    height: 20px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 1px 2px 2px black;
+    color: black;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+}
+
+.btnClass {
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    height: 40px;
+    margin-top: 50px;
+    justify-content: end;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    color: black;
+    box-shadow: 1px 2px 2px black;
+}
+
+.btnClass:hover {
+    background-color: #E0E1DD;
+}
+
+.btnClass:active {
+    width: 90%;
+    box-shadow: -1px -2px 2px black;
+}
