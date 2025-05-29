@@ -3,21 +3,22 @@
     padding: 0.75rem 2rem;
     margin-left: 50px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin: auto;
+    width: 100%;
 }
 
 .nav-links {
     font-size: 25px;
     list-style: none;
     display: flex;
-    gap: 45rem;
+    justify-content: space-around;
+
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     transition: color 0.3s ease;
-
-
 }
 
 .nav-links a:hover {

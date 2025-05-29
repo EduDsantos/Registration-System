@@ -9,7 +9,10 @@ const alunosSchema = new mongoose.Schema({
     faixa:{type:String, required: true},        
     resMedic:{ type: String,required: false},
     dataCadastro:{type:Date,default: Date.now},
-    statusPagamento:{type: Boolean,default: false}
+    dataUltimoPagamento:{type},
+    dataPagamento:{type},
+    diaVencimento:
+    // statusPagamento:{type: Boolean,default: false}
 })
 
 module.exports = mongoose.model("alunos", alunosSchema)

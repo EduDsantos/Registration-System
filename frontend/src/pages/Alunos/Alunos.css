@@ -1,3 +1,7 @@
-table{
-    width: 500px;
+.tabela-Container {
+    width: 1000px;
+    margin: auto;
+    height: 100px;
+    font-size: 20px;
 }
+
