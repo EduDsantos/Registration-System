@@ -5,6 +5,7 @@ const alunosRoutes = require('./Routes/alunosRoutes')
 const treinadorRoutes = require('./Routes/treinadorRoutes')
 const authRouters = require('./Routes/authRouter')
 const pagamentoRoutes = require('./Routes/pagamentoRoutes')
+
 const cors = require('cors')
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(express.json())
 connectDB()
 
 
+require('./Service/cronJobs')
 app.use('/alunos', alunosRoutes)
 app.use('/treinador', treinadorRoutes)
 app.use('/treinador', authRouters)

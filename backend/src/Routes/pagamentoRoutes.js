@@ -8,3 +8,5 @@ router.get('/pagamentos', pagamentoController.listarPagamentos)
 router.get('/pagamentos/aluno/:alunoId', pagamentoController.listarPagamentosAluno)
 router.put('/pagamentos:id', pagamentoController.marcarPago)
 router.delete('/pagamentos:id', pagamentoController.deletarPagamento)
+
+module.exports = router
