@@ -25,7 +25,7 @@ cron.schedule('0 7 * * *', async () => {
             }
         }
 
-        // PAREI NO CRON, REVISAR MODEL DE PAGAMENTO
+     
 
     } catch (error) {
         console.error('Erro no cron de pagamentos: ', error)

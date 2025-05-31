@@ -4,7 +4,7 @@ const Pagamento = require('../Models/pagamento')
 const criarPagamento = async (req, res) => {
     try {
         const novoPagamento = new Pagamento(req.body)
-        await novoPagamento.Save()
+        await novoPagamento.save()
         res.status(201).json(novoPagamento)
     } catch (error) {
         console.error('Erro ao criar pagamento', error)
@@ -22,6 +22,34 @@ const listarPagamentos = async (req, res) => {
         res.status(500).json({ error: "Erro ao listar pagamentos" })
     }
 }
+
+const pagamentosPendentes = async (req, res) => {
+    try {
+        const pagamentos = await Pagamento.find({ status: 'pendente' }).populate('alunoId')
+        res.status(200).json(pendente)
+    } catch (error) {
+        res.status(500).json({ erro: "Erro ao buscar pagamentos pendentes" })
+    }
+}
+
+const listarPagos = async (req, res) => {
+    try {
+        const pagamentos = await Pagamento.find({ status: 'pago' }).populate('alunoId')
+        res.status(200).json(pagos)
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao buscar pagamentos pagos" })
+    }
+}
+
+const listarAtrasados = async (req, res) => {
+    try {
+        const pagamentos = (await Pagamento.find({ status: 'atrasado' })).populate('alunoId')
+        res.status(200), json(atrasado)
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao buscar pagamentos atrasados" })
+    }
+}
+
 
 const listarPagamentosAluno = async (req, res) => {
     try {
@@ -67,4 +95,4 @@ const marcarPago = async (req, res) => {
 
 
 
-module.exports = { criarPagamento, listarPagamentos, listarPagamentosAluno, marcarPago, deletarPagamento }
+module.exports = { criarPagamento, listarPagamentos, pagamentosPendentes, listarPagos, listarAtrasados, listarPagamentosAluno, marcarPago, deletarPagamento }

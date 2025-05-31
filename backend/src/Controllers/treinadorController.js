@@ -5,7 +5,9 @@ const treinadorService = require('../Service/treinadorService')
 async function criar(req, res){
     try{
         const treinador = await treinadorService.criarTreinador(req.body)
-        res.status(200).json(treinador)
+         
+        res.status(200).json(treinador) 
+       
 
         
     }catch(error){

@@ -15,13 +15,14 @@ app.use(express.json())
 
 
 connectDB()
-
-
 require('./Service/cronJobs')
+require('./Service/gerarPagamentos')
+
+
 app.use('/alunos', alunosRoutes)
 app.use('/treinador', treinadorRoutes)
-app.use('/treinador', authRouters)
+app.use('/treinador/auth/login', authRouters)
 app.use('/pagamentos', pagamentoRoutes)
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000
 app.listen(port, () => { console.log(`Servidor rodando na porta: ${port}`) })
