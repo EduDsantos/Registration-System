@@ -21,7 +21,7 @@ require('./Service/gerarPagamentos')
 
 app.use('/alunos', alunosRoutes)
 app.use('/treinador', treinadorRoutes)
-app.use('/treinador/auth/login', authRouters)
+app.use('/treinador', authRouters)
 app.use('/pagamentos', pagamentoRoutes)
 
 const port = process.env.PORT || 3000
