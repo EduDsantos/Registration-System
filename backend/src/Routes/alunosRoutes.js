@@ -10,3 +10,4 @@ router.put('/:id', autenticarToken, alunoController.atualizar)
 router.delete('/:id', autenticarToken, alunoController.deletar)
 
 module.exports = router
+

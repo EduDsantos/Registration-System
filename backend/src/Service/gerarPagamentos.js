@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const Pagamento = require('../Models/pagamento')
 const Aluno = require('../Models/alunos')
 
-cron.schedule('0 0 1 * *', async () => {
+cron.schedule('* * * * *', async () => {
 
     console.log('Gerando pagamentos mensais...')
 
@@ -12,12 +12,12 @@ cron.schedule('0 0 1 * *', async () => {
         const hoje = new Date()
         const proximoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, hoje.getDate())
 
-        for(let alunos of Aluno){
+        for(let aluno of alunos){
             const novoPagamento = new Pagamento({
                 alunoId: alunos._id,
                 valor: alunos.plano,
                 dataVencimento: proximoMes,
-                status: ' pendente '
+                status: 'pendente '
             })
 
             await novoPagamento.save()

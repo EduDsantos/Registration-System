@@ -3,7 +3,7 @@ const { enviarNotificacao } = require('./emailService')
 const Aluno = require('../Models/alunos')
 const Pagamento = require('../Models/pagamento')
 
-cron.schedule('0 7 * * *', async () => {
+cron.schedule('* * * * *', async () => {
     console.log('Enviando notifcação Às 7h')
 
     try {
@@ -13,6 +13,7 @@ cron.schedule('0 7 * * *', async () => {
             const hoje = new Date()
             const vencimento = new Date(pagamento.dataVencimento)
             const diffDias = Math.ceil((vencimento - hoje) / (1000 * 60 * 60 * 24))
+        
 
             if (diffDias <= 1 && diffDias >=0) {
                 const aluno = await Aluno.findById(pagamento.alunoId)

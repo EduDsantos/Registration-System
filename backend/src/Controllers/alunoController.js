@@ -1,10 +1,25 @@
 const alunoService = require('../Service/alunoService')
 const authService = require('../Service/authService')
+const Pagamento = require('../Models/pagamento')
+
 
 async function criar(req, res) {
     try {
         const aluno = await alunoService.criarAluno(req.body)
-        res.status(200).json(aluno)
+
+        const hoje = new Date()
+        const proximoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1,hoje.getDate())
+
+        const novoPagamento = new Pagamento({
+            alunoId: aluno._id,
+            valor: aluno.mensalidade,
+            dataVencimento: proximoMes,
+            status:'pendente'
+        })
+
+        await novoPagamento.save()
+
+        res.status(200).json(aluno, Pagamento)
         const {authorization} = req.headers
         console.log(authorization)
     } catch (error) {

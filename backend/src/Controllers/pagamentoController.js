@@ -16,6 +16,8 @@ const criarPagamento = async (req, res) => {
 const listarPagamentos = async (req, res) => {
     try {
         const pagamentos = await Pagamento.find().populate('alunoId')
+        // console.log('Pagamentos encontrados:', pagamentos)
+
         res.status(200).json({ pagamentos })
     } catch (error) {
         console.error("Erro ao listar pagamentos:", error)
@@ -76,6 +78,7 @@ const deletarPagamento = async (req, res) => {
 const marcarPago = async (req, res) => {
     try {
         const pagamento = await Pagamento.findById(req.params.id)
+        console.log("pagamento achado",pagamento)
 
         if (!pagamento) {
             return res.status(404).json({ error: "Pagamento não encontrado" })
