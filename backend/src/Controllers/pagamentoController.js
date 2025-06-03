@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Pagamento = require('../Models/pagamento')
+const Aluno = require('../Models/alunos')
 
 const criarPagamento = async (req, res) => {
     try {
@@ -78,12 +79,11 @@ const deletarPagamento = async (req, res) => {
 const marcarPago = async (req, res) => {
     try {
         const pagamento = await Pagamento.findById(req.params.id)
-        console.log("pagamento achado",pagamento)
 
         if (!pagamento) {
             return res.status(404).json({ error: "Pagamento não encontrado" })
         }
-        pagamento.status = 'Pago'
+        pagamento.status = 'pago'
         pagamento.dataPagamento = new Date()
         pagamento.metodoPagamento = req.body.metodoPagamento || "Não informado"
 
@@ -92,10 +92,28 @@ const marcarPago = async (req, res) => {
         res.status(200).json(pagamento)
     } catch (error) {
         console.error("Erro ao atualizar pagamento")
-        res.status(500).jsos({ error: "Erro ao atualizar pagamento" })
+        res.status(500).json({ error: "Erro ao atualizar pagamento" })
+    }
+}
+
+const desmarcarPago = async (req, res) => {
+    try {
+        const pagamento = await Pagamento.findById(req.params.id)
+
+        if (!pagamento) {
+            return res.status(404).json({ error: "Pagamento não encontrado" })
+        }
+        pagamento.status = 'pendente'
+
+        await pagamento.save()
+
+        res.status(200).json(pagamento)
+    } catch (error) {
+        console.error("Erro ao atualizar pagamento")
+        res.status(500).json({ error: "Erro ao atualizar pagamento" })
     }
 }
 
 
 
-module.exports = { criarPagamento, listarPagamentos, pagamentosPendentes, listarPagos, listarAtrasados, listarPagamentosAluno, marcarPago, deletarPagamento }
+module.exports = { criarPagamento, listarPagamentos, pagamentosPendentes, listarPagos, listarAtrasados, listarPagamentosAluno, marcarPago, deletarPagamento, desmarcarPago }

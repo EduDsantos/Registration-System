@@ -2,7 +2,7 @@ const cron = require('node-cron')
 const Pagamento = require('../Models/pagamento')
 const Aluno = require('../Models/alunos')
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('* * 1 * *', async () => {
 
     console.log('Gerando pagamentos mensais...')
 

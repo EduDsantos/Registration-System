@@ -3,7 +3,7 @@ const { enviarNotificacao } = require('./emailService')
 const Aluno = require('../Models/alunos')
 const Pagamento = require('../Models/pagamento')
 
-cron.schedule('* * * * *', async () => {
+cron.schedule('* 7 * * *', async () => {
     console.log('Enviando notifcação Às 7h')
 
     try {
