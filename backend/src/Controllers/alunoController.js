@@ -5,22 +5,24 @@ const Pagamento = require('../Models/pagamento')
 
 async function criar(req, res) {
     try {
+        
+        console.log('Recebido no body:', req.body)
         const aluno = await alunoService.criarAluno(req.body)
 
         const hoje = new Date()
-        const proximoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1,hoje.getDate())
+        const proximoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, hoje.getDate())
 
         const novoPagamento = new Pagamento({
             alunoId: aluno._id,
             valor: aluno.mensalidade,
             dataVencimento: proximoMes,
-            status:'pendente'
+            status: 'pendente'
         })
 
         await novoPagamento.save()
 
-        res.status(200).json(aluno, Pagamento)
-        const {authorization} = req.headers
+        res.status(200).json(aluno, { Pagamento: novoPagamento })
+        const { authorization } = req.headers
         console.log(authorization)
     } catch (error) {
         res.status(400).json({ erro: error.message })
