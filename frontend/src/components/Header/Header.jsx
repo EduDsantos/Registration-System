@@ -25,6 +25,7 @@ export default function Header() {
             <button className="logout-btn" onClick={handleLogout}>
                 🚪 SAIR
             </button>
+            
         </header>
     );
 }

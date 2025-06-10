@@ -5,8 +5,7 @@ const Pagamento = require('../Models/pagamento')
 
 async function criar(req, res) {
     try {
-        
-        console.log('Recebido no body:', req.body)
+        console.log("recebendo", req.body)
         const aluno = await alunoService.criarAluno(req.body)
 
         const hoje = new Date()

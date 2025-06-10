@@ -6,16 +6,16 @@ async function criarAluno(dados) {
 
 
     const novoAluno = new Aluno({
-        name: dados.name,
-        idade: Number(dados.idade),
-        email: dados.email,
-        telefone: dados.telefone,
-        cpf: dados.cpf,
-        faixa: dados.faixa,
-        resMedic: dados.resMedic,
-        mensalidade: Number(dados.mensalidade),
-        dataCadastro: new Date(dados.dataCadastro),
-        dataPagamento: new Date(dados.dataPagamento)
+        name: '',
+        idade: '',
+        email: '',
+        telefone: '',
+        cpf: '',
+        faixa: '',
+        resMedic: '',
+        mensalidade: '',
+        dataCadastro: '',
+        dataPagamento: '',
     })
     return await novoAluno.save()
 }
@@ -24,6 +24,7 @@ async function listarAlunos() {
     return await Aluno.find()
 }
 async function buscarAlunoPorId(id) {
+ 
     return await Aluno.findById(id)
 }
 async function atualizarAluno(id, dados) {

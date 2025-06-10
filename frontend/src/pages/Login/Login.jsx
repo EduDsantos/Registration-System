@@ -15,7 +15,7 @@ export default function Login() {
         setErro('')
 
         try {
-            const res = await api.post('/treinador/login', { email, senha })
+            const res = await api.post('http://localhost:5000/treinador/login', { email, senha })
             console.log(email, senha)
             const token = res.data.token
             localStorage.setItem('token', token)
@@ -43,7 +43,7 @@ export default function Login() {
                         <button className='btnClass' type="submit" >Entrar</button>
                     </div>
                 </div>
-                {/* {erro && <p style={{ color: 'red' }}>{erro}</p>} */}
+                {erro && <p style={{ color: 'red' }}>{erro}</p>}
             </form>
         </div>
 

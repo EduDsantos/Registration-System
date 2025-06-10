@@ -1,7 +1,66 @@
-.tabela-Container {
-    width: 1000px;
-    margin: auto;
-    height: 100px;
-    font-size: 20px;
+* {
+
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
 }
 
+.main-container h2 {
+    font-size: 50px;
+    display: flex;
+}
+
+.btnCadastrar {
+    display: flex;
+    font-family: "Roboto", sans-serif;
+    margin: auto;
+    font-size: 20px;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    width: 200px;
+    background-color: rgb(6, 164, 212);
+}
+
+p{
+    font-size: 40px;
+}
+
+
+
+.tabela-container {
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+.container-vertical th {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container-horizontal td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+
+.tabela-container button {
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.tabela-container button:hover {
+    background-color: #45a049;
+}

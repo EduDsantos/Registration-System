@@ -1,0 +1,154 @@
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import '../RegistrarAluno/Regis.css'
+import Header from '../../components/Header/Header'
+
+const EditarAluno = () => {
+    const { id } = useParams()
+    const navigate = useNavigate()
+
+    const [form, setForm] = useState({
+        name: '',
+        idade: '',
+        email: '',
+        telefone: '',
+        cpf: '',
+        faixa: '',
+        resMedic: '',
+        mensalidade: '',
+        dataCadastro: '',
+        dataPagamento: ''
+    })
+
+    const [mensagem, setMensagem] = useState('')
+
+    useEffect(() => {
+        const fetchAlunos = async () => {
+            try {
+                const token = localStorage.getItem('token')
+                const response = await axios.get(`http://localhost:5000/alunos/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setForm(response.data)
+
+            } catch (err) {
+                console.error(err)
+                setMensagem('Erro ao carregar alunos')
+                setTimeout(() => {
+                    setMensagem('')
+                }, 2000)
+            }
+        }
+         fetchAlunos()
+    }, [id])
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            const token = localStorage.getItem('token')
+            await axios.put(`http://localhost:5000/alunos/editar/${id}`, form,{
+                headers: {Authorization:`Bearer ${token}`}
+            })
+            setMensagem('Aluno atualizado com sucesso!')
+            setTimeout(() => {
+                navigate('/alunos')
+            }, 2000)
+        } catch (err) {
+            console.error(err)
+            setMensagem('Erro ao tentar atualizar aluno')
+            setTimeout(() => {
+                setMensagem('')
+            }, 3000)
+        }
+    }
+
+    function formatarDatas(dateString) {
+        return dateString ? dateString.split('T')[0] : ''
+
+    }
+
+
+    const Alunos = () => {
+        navigate('/alunos')
+    }
+    return (
+
+        <div className='main-container'>
+            <Header />
+            <h2>Registrar Aluno</h2>
+            <button onClick={Alunos}>Voltar</button>
+
+            {mensagem && <div className='mensagem'>{mensagem}</div>}
+            <form onSubmit={handleSubmit} className='formRegis-container'>
+                <label>Nome</label>
+                <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Nome' required />
+
+                <label>Idade</label>
+                <input type="number" name='idade' value={form.idade} onChange={handleChange} placeholder='Idade' required />
+
+                <label>Email</label>
+                <input type="email" name='email' value={form.email} onChange={handleChange} placeholder='email' required />
+
+                <label>telefone</label>
+                <input type="number" name='telefone' value={form.telefone} onChange={handleChange} placeholder='telefone' required />
+
+                <label>CPF</label>
+                <input type="text" name='cpf' value={form.cpf} onChange={handleChange} placeholder='CPF' required />
+
+                <label>faixa</label>
+                <select name='faixa' value={form.faixa} onChange={handleChange}>
+                    <option>Branca</option>
+                    <option>Cinza e Branca</option>
+                    <option>Cinza</option>
+                    <option>Cinza e Preta</option>
+                    <option>Cinza e Amarela</option>
+                    <option>Amarela</option>
+                    <option>Amarela e Preta</option>
+                    <option>Laranja e Branca</option>
+                    <option>Laranja</option>
+                    <option>Laranja e Preta</option>
+                    <option>Verde e Branca</option>
+                    <option>Verde</option>
+                    <option>Verde e Preta</option>
+                    <option>Azul</option>
+                    <option>Roxa</option>
+                    <option>Marrom</option>
+                    <option>Preta</option>
+                    <option>Vermelha e Preta</option>
+                    <option>Vermelha e Branca</option>
+                    <option>Vermelha</option>
+                </select>
+
+
+                <label>Mensalidade</label>
+                <input type="number" name='mensalidade' value={form.mensalidade} onChange={handleChange} placeholder='Mensalidade' required />
+
+                <label>Data de Cadastro</label>
+                <input type="Date" name='dataCadastro' value={formatarDatas(form.dataCadastro)} onChange={handleChange} placeholder='Data de Cadastro' required />
+
+                <label>Data de Pagamento</label>
+                <input type="Date" name='dataPagamento' value={formatarDatas(form.dataPagamento)} onChange={handleChange} placeholder='dataPagamento' required />
+
+                <label>Restrição Medica</label>
+                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea>
+                <button className='btnSub' type='submit'>Salvar alteração</button>
+
+            </form>
+        </div>
+    )
+
+
+
+
+}
+export default EditarAluno
+
+

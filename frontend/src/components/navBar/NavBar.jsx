@@ -6,7 +6,7 @@ export default function NavBar() {
         <nav className="navbar">
             <ul className="nav-links">
                 <li><a href="/alunos">Lista de Alunos</a></li>
-                <li><a href="#pagamentos">Pagamentos</a></li>
+                <li><a href="/pagamentos">Pagamentos</a></li>
                 <li><a href="#desempenho">Visão Geral</a></li>
             </ul>
         </nav>
