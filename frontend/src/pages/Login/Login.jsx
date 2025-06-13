@@ -16,7 +16,6 @@ export default function Login() {
 
         try {
             const res = await api.post('http://localhost:5000/treinador/login', { email, senha })
-            console.log(email, senha)
             const token = res.data.token
             localStorage.setItem('token', token)
             navigate('/dashboard')

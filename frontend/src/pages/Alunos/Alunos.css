@@ -15,15 +15,26 @@
     font-family: "Roboto", sans-serif;
     margin: auto;
     font-size: 20px;
+    box-shadow: 3px 3px black;
     justify-content: center;
     padding: 20px;
     margin-top: 30px;
+    cursor: pointer;
     border-radius: 10px;
     width: 200px;
     background-color: rgb(6, 164, 212);
 }
 
-p{
+/* .btnCadastrar:hover {} */
+
+.btnCadastrar:active {
+    width: 198px;
+    font-size: 18px;
+    background-color: rgb(87, 216, 255);
+    box-shadow: -3px -3px black;
+}
+
+p {
     font-size: 40px;
 }
 

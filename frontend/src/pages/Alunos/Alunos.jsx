@@ -11,7 +11,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 export default function Alunos() {
     const [alunos, setAlunos] = useState([])
     const [mensagem, setMensagem] = useState('')
-    const { id } = useParams()
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -37,10 +36,18 @@ export default function Alunos() {
 
     const navigate = useNavigate()
 
-    const DeletarAluno = async () => {
+    const DeletarAluno = async (id) => {
+        console.log("tentando deletar o id:", id)
+        const confirmar = window.confirm("Você tem certeza que deseja excluir esse aluno?")
+        if (!confirmar) return
         try {
-            window.confirm("Você tem certeza que deseja excluir esse aluno?")
             const token = localStorage.getItem('token')
+
+            if (!id) {
+                setMensagem("id nao econtrado")
+                return
+            }
+
             await axios.delete(`http://localhost:5000/alunos/deletar/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
@@ -48,6 +55,7 @@ export default function Alunos() {
             setTimeout(() => {
                 setMensagem('')
             }, 3000)
+            setAlunos(prev => prev.filter(a => a._id !== id))
         } catch (err) {
             setMensagem("Erro ao deletar aluno")
             console.log(err)
@@ -77,36 +85,38 @@ export default function Alunos() {
                 {alunos.length === 0 ? (
                     (<button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>)
                 ) : (
-                <table className="tabela-container">
-                    <thead className="container-vertical">
-                        <tr>
-                            <th>cpf</th>
-                            <th>Nome</th>
-                            <th>Idade</th>
-                            <th>Faixa</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody className="container-horizontal">
-                        {alunos.map((aluno) => {
-                            console.log(aluno)
-                            return (
-                                <tr key={aluno.cpf}>
-                                    <td>{aluno.cpf}</td>
-                                    <td>{aluno.name}</td>
-                                    <td>{aluno.idade}</td>
-                                    <td>{aluno.faixa}</td>
-                                    <td>{aluno.status}</td>
-                                    <td>
-                                        <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
-                                        <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                    <table className="tabela-container">
+                        <thead className="container-vertical">
+                            <tr>
+                                <th>cpf</th>
+                                <th>Nome</th>
+                                <th>Idade</th>
+                                <th>Faixa</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody className="container-horizontal">
+                            {alunos.map((aluno) => {
+                                console.log(aluno)
+                                return (
+                                    <tr key={aluno.cpf}>
+                                        <td>{aluno.cpf}</td>
+                                        <td>{aluno.name}</td>
+                                        <td>{aluno.idade}</td>
+                                        <td>{aluno.faixa}</td>
+                                        <td>{aluno.status}</td>
+                                        <td>
+                                            <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
+                                            <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>
+                                        </td>
+                                    </tr>
+
+                                );
+                            })}
+
+                        </tbody>
+                    </table>
                 )}
             </div>
         </div>

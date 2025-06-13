@@ -7,7 +7,8 @@ import { Navigate, useNavigate } from 'react-router-dom'
 
 export default function RegistrarAluno() {
 
-    const [mensagem, setMensagem] = useState('')
+    const [mensagemSucess, setMensagemSucess] = useState('')
+    const [mensagemErro, setMensagemErro] = useState('')
 
     const [form, setForm] = useState({
         name: '',
@@ -18,8 +19,6 @@ export default function RegistrarAluno() {
         faixa: '',
         resMedic: '',
         mensalidade: '',
-        dataCadastro: '',
-        dataPagamento: ''
     })
 
     function formatarDatas(dateString) {
@@ -31,57 +30,54 @@ export default function RegistrarAluno() {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    const payload = {
-        ...form,
-        idade: Number(form.idade),
-        mensalidade: Number(form.mensalidade),
-        dataCadastro: form.dataCadastro ? new Date(form.dataCadastro) : undefined,
-        dataPagamento: form.dataPagamento ? new Date(form.dataPagamento) : undefined
-    }
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
+        const navigate = useNavigate()
+
+        if (!form.faixa) {
+            setMensagemErro("Selecione uma faixa")
+        }
         try {
-            e.preventDefault()
+
+            const dadosConvert = {
+                ...form,
+                idade: Number(form.idade),
+                mensalidade: Number(form.mensalidade)
+            }
+
             const token = localStorage.getItem('token')
-            await axios.post('http://localhost:5000/cadastrar', form, {
+            await axios.post('http://localhost:5000/alunos/cadastrar', dadosConvert, {
+                'Content-Type': 'application/json',
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
 
-            setMensagem('Aluno cadastrado com sucesso!')
+            setMensagemSucess('Aluno cadastrado com sucesso!')
             setTimeout(() => {
-                setMensagem('')
+                setMensagemSucess('')
+                navigate('./alunos')
             }, 3000)
 
-            setForm({
-                name: '',
-                idade: '',
-                email: '',
-                telefone: '',
-                cpf: '',
-                faixa: '',
-                resMedic: '',
-                mensalidade: '',
-                dataCadastro: '',
-                dataPagamento: ''
-
-            })
-
         } catch (err) {
-            console.error(err)
-            setMensagem('Erro ao cadastrar aluno!')
+            if (err.response && err.response && err.response.data.erro) {
+                setMensagemErro(err.response.data.erro)
+            } else {
+                console.error(err)
+                setMensagemErro('Erro ao cadastrar aluno!')
 
-            setTimeout(() => {
-                setMensagem('');
-            }, 3000);
+                setTimeout(() => {
+                    setMensagemErro('');
+                }, 3000);
+            }
+
         }
     }
-    const navigate = useNavigate()
-    const Alunos = () => {
-        navigate('/alunos')
-    }
-
+    // const navigate = useNavigate()
+    // const alunos = () => {
+    //     navigate('/alunos')
+    // }
 
 
 
@@ -90,16 +86,17 @@ export default function RegistrarAluno() {
         <div className='main-container'>
             <Header />
             <h2>Registrar Aluno</h2>
-            <button onClick={Alunos}>Voltar</button>
+            <button onClick={alunos}>Voltar</button>
 
-            {mensagem && <div className='mensagem'>{mensagem}</div>}
+            {mensagemSucess && <p style={{ color: 'green' }} >{mensagemSucess}</p>}
+            {mensagemErro && <p style={{ color: 'red' }}> {mensagemErro}</p>}
             <form onSubmit={handleSubmit} className='formRegis-container'>
                 <label>Nome</label>
                 <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Nome' required />
 
 
                 <label>Idade</label>
-                <input type="number" name='idade' value={payload.form.idade} onChange={handleChange} placeholder='Idade' required />
+                <input type="number" name='idade' value={form.idade} onChange={handleChange} placeholder='Idade' required />
 
                 <label>Email</label>
                 <input type="email" name='email' value={form.email} onChange={handleChange} placeholder='email' required />
@@ -108,13 +105,13 @@ export default function RegistrarAluno() {
                 <input type="text" name='telefone' value={form.telefone} onChange={handleChange} placeholder='telefone' required />
 
                 <label>CPF</label>
-                <input type="text" name='cpf' value={payload.form.cpf.replace(/\D/g, '')} onChange={handleChange} placeholder='CPF' required />
+                <input type="text" name='cpf' value={form.cpf.replace(/\D/g, '')} onChange={handleChange} placeholder='CPF' required />
 
                 <label>faixa</label>
                 <select name='faixa' value={form.faixa} onChange={handleChange}>
-                    <option value='branca'>Branca</option>
-                    <option value='cinzaBranca'>Cinza e Branca</option>
+                    <option onChange={handleChange} value='branca'>Branca</option>
                     <option value='cinza'>Cinza</option>
+                    <option value='cinzaBranca'>Cinza e Branca</option>
                     <option value='cinzaPreta'>Cinza e Preta</option>
                     <option value='cinzaAmarela'>Cinza e Amarela</option>
                     <option value='amarela'>Amarela</option>
@@ -136,21 +133,21 @@ export default function RegistrarAluno() {
 
 
                 <label>Mensalidade</label>
-                <input type="number" name='mensalidade' value={payload.form.mensalidade} onChange={handleChange} placeholder='Mensalidade' required />
+                <input type="number" name='mensalidade' value={form.mensalidade} onChange={handleChange} placeholder='Mensalidade' required />
 
                 <label>Data de Cadastro</label>
-                <input type="Date" name='dataCadastro' value={formatarDatas(payload.form.dataCadastro)} onChange={handleChange} placeholder='Data de Cadastro' />
+                <input type="Date" name='dataCadastro' value={formatarDatas(form.dataCadastro)} onChange={handleChange} placeholder='Data de Cadastro' />
 
                 <label>Data de Pagamento</label>
-                <input type="Date" name='dataPagamento' value={formatarDatas(payload.form.dataPagamento)} onChange={handleChange} placeholder='dataPagamento' required />
+                <input type="Date" name='dataPagamento' value={formatarDatas(form.dataPagamento)} onChange={handleChange} placeholder='dataPagamento' required />
 
                 <label>Restrição Medica</label>
-                <textarea name='resMedic' value={payload.form.resMedic} onChange={handleChange}></textarea>
+                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea>
 
                 <button className='btnSub' type='submit'>Cadastrar</button>
 
             </form>
-        </div>
+        </div >
     )
 
 

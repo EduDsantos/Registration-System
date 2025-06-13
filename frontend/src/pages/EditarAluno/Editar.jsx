@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import '../RegistrarAluno/Regis.css'
+import './editar.css'
 import Header from '../../components/Header/Header'
 
 const EditarAluno = () => {
@@ -21,7 +21,8 @@ const EditarAluno = () => {
         dataPagamento: ''
     })
 
-    const [mensagem, setMensagem] = useState('')
+    const [mensagemErro, setMensagemErro] = useState('')
+    const [mensagemSucess, setMensagemSucess] = useState('')
 
     useEffect(() => {
         const fetchAlunos = async () => {
@@ -36,13 +37,13 @@ const EditarAluno = () => {
 
             } catch (err) {
                 console.error(err)
-                setMensagem('Erro ao carregar alunos')
+                setMensagemErro('Erro ao carregar alunos')
                 setTimeout(() => {
-                    setMensagem('')
+                    setMensagemErro('')
                 }, 2000)
             }
         }
-         fetchAlunos()
+        fetchAlunos()
     }, [id])
 
     const handleChange = (e) => {
@@ -54,18 +55,19 @@ const EditarAluno = () => {
 
         try {
             const token = localStorage.getItem('token')
-            await axios.put(`http://localhost:5000/alunos/editar/${id}`, form,{
-                headers: {Authorization:`Bearer ${token}`}
+            await axios.put(`http://localhost:5000/alunos/editar/${id}`, form, {
+                headers: { Authorization: `Bearer ${token}` }
             })
-            setMensagem('Aluno atualizado com sucesso!')
+            setMensagemSucess('Aluno atualizado com sucesso!')
             setTimeout(() => {
+                setMensagemErro('')
                 navigate('/alunos')
             }, 2000)
         } catch (err) {
             console.error(err)
-            setMensagem('Erro ao tentar atualizar aluno')
+            setMensagemErro('Erro ao tentar atualizar aluno')
             setTimeout(() => {
-                setMensagem('')
+                setMensagemErro('')
             }, 3000)
         }
     }
@@ -83,10 +85,11 @@ const EditarAluno = () => {
 
         <div className='main-container'>
             <Header />
-            <h2>Registrar Aluno</h2>
+            <h2>Editar Aluno</h2>
             <button onClick={Alunos}>Voltar</button>
 
-            {mensagem && <div className='mensagem'>{mensagem}</div>}
+            {mensagemSucess && <p style={{ color: 'green' }} >{mensagemSucess}</p>}
+            {mensagemErro && <p style={{ color: 'red' }}> {mensagemErro}</p>}
             <form onSubmit={handleSubmit} className='formRegis-container'>
                 <label>Nome</label>
                 <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Nome' required />

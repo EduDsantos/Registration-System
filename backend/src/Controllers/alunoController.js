@@ -20,7 +20,7 @@ async function criar(req, res) {
 
         await novoPagamento.save()
 
-        res.status(200).json(aluno, { Pagamento: novoPagamento })
+        res.status(200).json({ aluno, Pagamento: novoPagamento })
         const { authorization } = req.headers
         console.log(authorization)
     } catch (error) {
@@ -46,9 +46,17 @@ async function atualizar(req, res) {
 }
 
 async function deletar(req, res) {
-    const aluno = await alunoService.deletarAluno(req.params.id);
-    if (!aluno) return res.status(404).json({ erro: 'Aluno não encontrado' });
-    res.json({ mensagem: 'Aluno deletado com sucesso' });
+    try {
+        const aluno = await alunoService.deletarAluno(req.params.id);
+        if (!aluno) return res.status(404).json({ erro: 'Aluno não encontrado' });
+
+        await Pagamento.deleteMany({ alunoId: req.params.id })
+
+        res.json({ mensagem: 'Aluno deletado com sucesso' });
+    }catch(err){
+        console.error(err)
+        res.status(400).json({erro: "Erro ao tentar apagar aluno"})
+    }
 }
 
 module.exports = {
