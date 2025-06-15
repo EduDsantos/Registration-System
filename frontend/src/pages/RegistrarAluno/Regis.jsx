@@ -74,11 +74,12 @@ export default function RegistrarAluno() {
 
         }
     }
-    // const navigate = useNavigate()
-    // const alunos = () => {
-    //     navigate('/alunos')
-    // }
 
+
+    const Navigate = useNavigate()
+    const alunos = () => {
+        Navigate('/alunos')
+    }
 
 
     return (

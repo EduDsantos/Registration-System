@@ -66,6 +66,8 @@ export default function Alunos() {
 
     }
 
+
+
     const CadastrarAluno = () => {
         navigate('/cadastrar')
     }
@@ -83,7 +85,7 @@ export default function Alunos() {
             <div className='main-container'>
                 <h2>Lista de Alunos</h2>
                 {alunos.length === 0 ? (
-                    (<button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>)
+                    console.log('')
                 ) : (
                     <table className="tabela-container">
                         <thead className="container-vertical">
@@ -114,10 +116,10 @@ export default function Alunos() {
 
                                 );
                             })}
-
                         </tbody>
                     </table>
                 )}
+                (<button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>)
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import api from '../../services/api'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import Logo from '../../images/logo.png'
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -28,6 +29,16 @@ export default function Login() {
 
     return (
         <div className="Container">
+
+            <div className="title-container">
+                <div className="logoImg-container">
+                    <img className='logoImg2' src={Logo} alt="Logo" />
+                </div>
+                <div className="img-container">
+                    <h1 className='h1Title' >Raphael Teixeira</h1>
+                </div>
+            </div>
+
             <form className='LoginContainer' onSubmit={handleLogin}>
                 <div className="form-container">
                     <div className='input-value'>

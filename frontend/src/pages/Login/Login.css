@@ -14,29 +14,78 @@
     overflow: hidden;
 }
 
+
 .Container {
     /* background-color: black; */
     height: 100vh;
     display: flex;
-    background-image: url('../../images/logo.png');
-    background-color: #3d4857;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
+    background-image: linear-gradient(to left, rgb(16, 12, 34), rgb(22, 22, 134));
     color: white;
 
+}
+
+.title-container {
+    display: flex;
+    margin: auto;
+    position: relative;
+    left: 80px;
+    width: 500px;
+    height: 100%;
+    box-shadow: 0px 4px 4px 4px black;
+    background: linear-gradient(to left, rgb(12, 12, 53), rgb(22, 22, 134));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.img-container {
+    display: block;
+    position: relative;
+    margin: auto;
+    bottom: 160px;
+
+}
+
+.logoImg-container {
+    background: linear-gradient(to left, rgb(12, 12, 53), rgb(31, 31, 184));
+    box-shadow: 2px 2px 3px black;
+    border-radius: 50%;
+    width: 400px;
+    display: flex;
+    position: absolute;
+    height: 400px;
+    top: 50%;
+    margin: auto;
+    left: 10%;
+
+}
+
+
+
+
+.h1Title {
+    font-family: "Edu VIC WA NT Hand", cursive;
+    text-shadow: 5px 5px 4px black;
+    padding: 10px;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    margin: auto;
 }
 
 .LoginContainer {
     font-family: "Roboto", sans-serif;
     background-color: rgba(224, 225, 221, 0.15);
-    width: 360px;
-    padding: 20px;
+    width: 500px;
+    padding: 25px;
     margin: auto;
+    position: relative;
+    right: 300px;
+
     border-radius: 10px;
     height: 500px;
-    box-shadow: 1px 2px 2px black;
-    backdrop-filter: blur(8px);
+    box-shadow: 8px 14px 5px rgba(0, 0, 0, 0.425);
+    backdrop-filter: blur(10px);
 
 
 
@@ -45,8 +94,6 @@
 .form-container {
     width: 100%;
     justify-items: baseline;
-
-
 }
 
 label {
