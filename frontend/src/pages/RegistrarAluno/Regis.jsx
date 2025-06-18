@@ -33,7 +33,7 @@ export default function RegistrarAluno() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const navigate = useNavigate()
+        // const navigate = useNavigate()
 
         if (!form.faixa) {
             setMensagemErro("Selecione uma faixa")
@@ -57,7 +57,7 @@ export default function RegistrarAluno() {
             setMensagemSucess('Aluno cadastrado com sucesso!')
             setTimeout(() => {
                 setMensagemSucess('')
-                navigate('./alunos')
+                // navigate('./alunos')
             }, 3000)
 
         } catch (err) {

@@ -26,6 +26,8 @@ app.use('/cadastrar', alunosRoutes)
 app.use('/editar', alunosRoutes)
 app.use('/deletar', alunosRoutes)
 app.use('/pagamentos', pagamentoRoutes)
+app.use('/ativos', alunosRoutes)
+app.use('/pagamentos/pendentes', pagamentoRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => { console.log(`Servidor rodando na porta: ${port}`) })

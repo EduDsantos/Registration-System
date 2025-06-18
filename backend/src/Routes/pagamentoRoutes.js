@@ -1,7 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const pagamentoController = require('../Controllers/pagamentoController');
+const Aluno = require('../Models/alunos')
 const autenticarToken = require('../AuthMiddleware/authMiddleware');
+
+
+
+
 
 
 router.post('/', pagamentoController.criarPagamento);

@@ -8,9 +8,10 @@ const alunosSchema = new mongoose.Schema({
     cpf: { type: String, required: true, unique: true },
     faixa: { type: String, required: true },
     resMedic: { type: String, required: false },
-    mensalidade: { type: Number, required : true },
+    mensalidade: { type: Number, required: true },
     dataCadastro: { type: Date, default: Date.now },
     dataPagamento: { type: Date, default: Date.now },
+    ativo: { type: Boolean, default: true }
 })
 
 module.exports = mongoose.model("alunos", alunosSchema)
