@@ -29,6 +29,8 @@ router.get("/pagamentos/pendentes", async (req, res) => {
     }
 });
 
+
+
 router.get("/crescimento", async (req, res) => {
     try {
         const agora = new Date()

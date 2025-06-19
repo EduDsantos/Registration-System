@@ -9,6 +9,7 @@ const autenticarToken = require('../AuthMiddleware/authMiddleware');
 
 
 
+
 router.post('/', pagamentoController.criarPagamento);
 router.get('/', pagamentoController.listarPagamentos);
 router.get('/aluno/:alunoId', pagamentoController.listarPagamentosAluno);
