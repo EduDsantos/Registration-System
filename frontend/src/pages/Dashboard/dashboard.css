@@ -1,3 +1,90 @@
-/* *{
-    background-color: black;
-} */
+.dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 5px 0;
+  font-size: 22px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* cores dos cards */
+.card.green {
+  border-left: 6px solid #28a745;
+}
+
+.card.red {
+  border-left: 6px solid #dc3545;
+}
+
+.card.blue {
+  border-left: 6px solid #007bff;
+}
+
+.card.yellow {
+  border-left: 6px solid #ffc107;
+}
+
+/* área de gráficos */
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart-placeholder {
+  background: #e9ecef;
+  height: 200px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 20px;
+}

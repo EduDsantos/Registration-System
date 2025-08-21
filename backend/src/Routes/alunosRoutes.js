@@ -14,20 +14,20 @@ router.get("/ativos", async (req, res) => {
     }
 });
 
-router.get("/pagamentos/pendentes", async (req, res) => {
-    try {
-        const hoje = new Date()
-        const total = await Aluno.countDocuments({
-            dataPagamento: { $lt: hoje },
-            ativo: true
+// router.get("/pagamentos/pendentes", async (req, res) => {
+//     try {
+//         const hoje = new Date()
+//         const total = await Aluno.countDocuments({
+//             dataPagamento: { $lt: hoje },
+//             ativo: true
 
-        });
-        res.json({ total })
-    } catch (error) {
-        console.error("Erro ao buscar pagamentos pendentes:", error);
-        res.status(500).json({ error: "Erro interno do servidor" });
-    }
-});
+//         });
+//         res.json({ total })
+//     } catch (error) {
+//         console.error("Erro ao buscar pagamentos pendentes:", error);
+//         res.status(500).json({ error: "Erro interno do servidor" });
+//     }
+// });
 
 
 

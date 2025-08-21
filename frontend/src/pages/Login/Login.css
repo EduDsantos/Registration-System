@@ -1,144 +1,115 @@
-/* PALHETAS
-    AZUL ESCURO: #0D1B2A;
-    AZUL ESCURO 2: #3d4857;
-    AZUL MAIS OU MENOS ESCURO: #1B263B;
-    AZUL NORMAL: #415A77;
-    AZUL CLARO: #778DA9;
-    TOM DE BRANCO: #E0E1DD.
-*/
-* {
-    font-weight: 400;
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-
+/* Tela cheia, centraliza tudo */
 .Container {
-    /* background-color: black; */
-    height: 100vh;
-    display: flex;
-    background-image: linear-gradient(to left, rgb(16, 12, 34), rgb(22, 22, 134));
-    color: white;
-
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b); /* degrade azul escuro/cinza */
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Logo + título */
 .title-container {
-    display: flex;
-    margin: auto;
-    position: relative;
-    left: 80px;
-    width: 500px;
-    height: 100%;
-    box-shadow: 0px 4px 4px 4px black;
-    background: linear-gradient(to left, rgb(12, 12, 53), rgb(22, 22, 134));
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
-
-.img-container {
-    display: block;
-    position: relative;
-    margin: auto;
-    bottom: 160px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .logoImg-container {
-    background: linear-gradient(to left, rgb(12, 12, 53), rgb(31, 31, 184));
-    box-shadow: 2px 2px 3px black;
-    border-radius: 50%;
-    width: 400px;
-    display: flex;
-    position: absolute;
-    height: 400px;
-    top: 50%;
-    margin: auto;
-    left: 10%;
-
+  margin-bottom: 1rem;
 }
 
-
-
+.logoImg2 {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white; /* fundo branco arredondado pra destacar a logo */
+  padding: 10px;
+}
 
 .h1Title {
-    font-family: "Edu VIC WA NT Hand", cursive;
-    text-shadow: 5px 5px 4px black;
-    padding: 10px;
-    font-size: 50px;
-    display: flex;
-    align-items: center;
-    margin: auto;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f8fafc; /* quase branco */
 }
 
+/* Card do formulário */
 .LoginContainer {
-    font-family: "Roboto", sans-serif;
-    background-color: rgba(224, 225, 221, 0.15);
-    width: 500px;
-    padding: 25px;
-    margin: auto;
-    position: relative;
-    right: 300px;
-
-    border-radius: 10px;
-    height: 500px;
-    box-shadow: 8px 14px 5px rgba(0, 0, 0, 0.425);
-    backdrop-filter: blur(10px);
-
-
-
+  background: white;
+  color: #0f172a;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 380px;
 }
 
+/* Inputs */
 .form-container {
-    width: 100%;
-    justify-items: baseline;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
-label {
-    margin-right: 10px;
-    font-size: 20px;
-    padding: 5px;
-    box-shadow: 1px 1px 3px black;
-    border-radius: 5px;
-    background-color: #e0e1dd46;
+.input-value {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input-value label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #1e293b;
 }
 
 .input-value input {
-    padding: 20px;
-    margin: 30px auto;
-    height: 20px;
-    border-radius: 50px;
-    border: none;
-    box-shadow: 1px 2px 2px black;
-    color: black;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
+.input-value input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0px 0px 6px #3b82f6;
+}
+
+/* Botão */
 .btn-container {
-    width: 100%;
-    display: flex;
+  margin-top: 1rem;
 }
 
 .btnClass {
-    font-size: 20px;
-    font-family: "Roboto", sans-serif;
-    width: 100%;
-    height: 40px;
-    margin-top: 50px;
-    justify-content: end;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    color: black;
-    box-shadow: 1px 2px 2px black;
+  width: 100%;
+  padding: 12px;
+  background: #3b82f6; /* azul */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .btnClass:hover {
-    background-color: #E0E1DD;
+  background: #2563eb; /* azul mais escuro */
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-.btnClass:active {
-    width: 90%;
-    box-shadow: -1px -2px 2px black;
+/* Mensagem de erro */
+p {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
