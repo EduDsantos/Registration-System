@@ -19,7 +19,9 @@ async function criarAluno(dados) {
         cpf: dados.cpf,
         faixa: dados.faixa,
         resMedic: dados.resMedic,
-        mensalidade: dados.mensalidade
+        mensalidade: dados.mensalidade,
+        pago: dados.pago
+
     })
 
 

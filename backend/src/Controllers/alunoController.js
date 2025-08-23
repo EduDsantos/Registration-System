@@ -7,15 +7,17 @@ async function criar(req, res) {
     try {
         console.log("recebendo", req.body)
         const aluno = await alunoService.criarAluno(req.body)
-
         const hoje = new Date()
-        const proximoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, hoje.getDate())
+        const dataVencimento = req.body.dataPagamento
+            ? new Date(req.body.dataPagamento)
+            : new Date(hoje.getFullYear(), hoje.getMonth() + 1, hoje.getDate())
 
         const novoPagamento = new Pagamento({
             alunoId: aluno._id,
             valor: aluno.mensalidade,
-            dataVencimento: proximoMes,
+            dataVencimento: dataVencimento,
             status: 'pendente'
+
         })
 
         await novoPagamento.save()
@@ -27,6 +29,8 @@ async function criar(req, res) {
         res.status(400).json({ erro: error.message })
     }
 }
+
+
 
 async function listar(req, res) {
     const alunos = await alunoService.listarAlunos()
@@ -53,9 +57,9 @@ async function deletar(req, res) {
         await Pagamento.deleteMany({ alunoId: req.params.id })
 
         res.json({ mensagem: 'Aluno deletado com sucesso' });
-    }catch(err){
+    } catch (err) {
         console.error(err)
-        res.status(400).json({erro: "Erro ao tentar apagar aluno"})
+        res.status(400).json({ erro: "Erro ao tentar apagar aluno" })
     }
 }
 
@@ -64,5 +68,6 @@ module.exports = {
     listar,
     buscarPorId,
     atualizar,
-    deletar
+    deletar,
+    // getMatriculasMensal
 };

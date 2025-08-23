@@ -80,7 +80,7 @@ export default function Alunos() {
     if (loading) return <p> Carregando... </p>
 
     return (
-        <div className='container'>
+        <div className='dashboard-container'>
             <Header />
             <div className='main-container'>
                 <h2>Lista de Alunos</h2>
@@ -119,7 +119,7 @@ export default function Alunos() {
                         </tbody>
                     </table>
                 )}
-                (<button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>)
+                <button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>
             </div>
         </div>
     );

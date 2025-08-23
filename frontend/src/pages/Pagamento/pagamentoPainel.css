@@ -5,6 +5,14 @@
   margin: 0px;
 }
 
+.main-container {
+  background-color: #edf0f3;
+  width: 99%;
+  padding: 50px;
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
 .main-container h2 {
   font-size: 50px;
   display: flex;
@@ -19,6 +27,30 @@
   align-items: center;
   margin: auto;
   width: 80%;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.tab {
+  padding: 10px 20px;
+  border: none;
+  background: #eee;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.tab:not(:last-child) {
+  margin-right: 5px;
+}
+
+.tab.active {
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
 }
 
 .table-container th {
@@ -51,4 +83,9 @@
 
 .table-container button:hover {
   background-color: #45a049;
+}
+
+button {
+  padding: 20px;
+  margin-right: 10px;
 }

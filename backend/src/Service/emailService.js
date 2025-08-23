@@ -13,7 +13,7 @@ async function enviarNotificacao(aluno, pagamento) {
         from: 'eduss2077@gmail.com',
         to: aluno.email,
         subject: 'Vencimendo da Mensalidade - Raphael Teixeira academia',
-        text: `Olá${aluno.nome}, sua mensalidade de R$${pagamento.valor} está pendente`
+        text: `Olá ${aluno.nome}, sua mensalidade de R$${pagamento.valor} está pendente`
     }
     try {
         await transporter.sendMail(mailOption)

@@ -11,7 +11,8 @@ const alunosSchema = new mongoose.Schema({
     mensalidade: { type: Number, required: true },
     dataCadastro: { type: Date, default: Date.now },
     dataPagamento: { type: Date, default: Date.now },
-    ativo: { type: Boolean, default: true }
-})
+    ativo: { type: Boolean, default: true },
+    pago: { type: Boolean, default: false }
+}, {timestamps: true})
 
 module.exports = mongoose.model("alunos", alunosSchema)

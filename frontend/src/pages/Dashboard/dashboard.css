@@ -1,5 +1,5 @@
-.dashboard {
-  padding: 20px;
+.dashboard-container {
+  padding: 4px;
   font-family: Arial, sans-serif;
   background: #f5f7fa;
   min-height: 100vh;
@@ -10,13 +10,23 @@
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
+  
+}
+
+.main-container{
+  background-color: #edf0f3;
+  width: 99%;
+  padding: 50px;
+ border-radius: 10px;
+  margin: 20px auto;
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  width: 50%;
+  margin: 20px auto;
 }
 
 .card {
@@ -26,6 +36,8 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: 0.2s;
+  
+  margin-left: 50px;
 }
 
 .card:hover {
@@ -65,26 +77,12 @@
 }
 
 /* área de gráficos */
-.charts-container {
+.chart-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+ align-items: center;
+
 }
 
-.chart {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.chart-placeholder {
-  background: #e9ecef;
-  height: 200px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  font-size: 20px;
+.chart-container > h3{
+  margin: auto;
 }
