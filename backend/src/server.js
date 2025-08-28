@@ -12,8 +12,8 @@ const app = express()
 
 // Middlewares
 app.use(cors({
-  origin:"*",
-  methods: ["GET","POST", "PUT", "DELETE"],
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }))
 app.use(express.json())
@@ -24,10 +24,10 @@ require('./Service/cronJobs')
 require('./Service/gerarPagamentos')
 
 // Rotas API
-app.use('/alunos', alunosRoutes)
-app.use('/pagamentos', pagamentoRoutes)
-app.use('/treinador', treinadorRoutes)
-app.use('/auth', authRouters)
+app.use('/api/alunos', alunosRoutes);
+app.use('/api/pagamentos', pagamentoRoutes);
+app.use('/api/treinador', treinadorRoutes);
+app.use('/api/auth', authRouters);
 
 // ✅ Servir frontend React em produção
 if (process.env.NODE_ENV === "production") {
@@ -37,17 +37,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirnameGlobal, "../frontend/dist")));
 
   app.get("*", (req, res) => {
-    if (
-      req.path.startsWith("/alunos") ||
-      req.path.startsWith("/treinador") ||
-      req.path.startsWith("/pagamentos")
-    ) {
-      return res.status(404).json({ error: "Endpoint não encontrado" });
-    }
     res.sendFile(path.join(__dirnameGlobal, "../frontend/dist", "index.html"));
-  });
-}
+  })
 
 
-const port = process.env.PORT || 5000
-app.listen(port, () => { console.log(`🚀 Servidor rodando na porta: ${port}`) })
+  const port = process.env.PORT || 5000
+  app.listen(port, () => { console.log(`🚀 Servidor rodando na porta: ${port}`) })
