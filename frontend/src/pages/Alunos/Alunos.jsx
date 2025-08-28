@@ -14,8 +14,11 @@ export default function Alunos() {
         const fetchAlunos = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const response = await api.get('/alunos')
-
+                const response = await api.get('/alunos', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setAlunos(response.data)
             } catch (error) {
                 console.log('Erro ao buscar alunos:', error)
