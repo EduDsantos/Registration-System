@@ -13,12 +13,9 @@ export default function Alunos() {
     useEffect(() => {
         const fetchAlunos = async () => {
             try {
-                const token = localStorage.getItem('token')
-                const response = await api.get('/alunos', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+
+                const response = await api.get('/alunos')
+
                 setAlunos(response.data)
             } catch (error) {
                 console.log('Erro ao buscar alunos:', error)
