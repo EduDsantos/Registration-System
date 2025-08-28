@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Users } from "lucide-react"
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 
-import "./Dashboard.css"
+import "./dashboard.css"
 import Header from "../../components/Header/Header"
 import api from "../../services/api"
 
