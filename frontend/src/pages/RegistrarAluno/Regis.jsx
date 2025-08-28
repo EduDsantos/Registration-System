@@ -46,13 +46,7 @@ export default function RegistrarAluno() {
                 mensalidade: Number(form.mensalidade)
             }
 
-            const token = localStorage.getItem('token')
-            await api.post('/alunos/cadastrar', dadosConvert, {
-                'Content-Type': 'application/json',
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
+            await api.post('/alunos/cadastrar', dadosConvert)
 
             setMensagemSucess('Aluno cadastrado com sucesso!')
             setTimeout(() => {
@@ -110,8 +104,9 @@ export default function RegistrarAluno() {
 
                 <label>faixa</label>
                 <select name='faixa' value={form.faixa} onChange={handleChange}>
-                    <option onChange={handleChange} value='branca'>Branca</option>
+                    <option onChange={handleChange} value='branca'>faixa</option>
                     <option value='cinza'>Cinza</option>
+                    <option value='branca'>Branca</option>
                     <option value='cinzaBranca'>Cinza e Branca</option>
                     <option value='cinzaPreta'>Cinza e Preta</option>
                     <option value='cinzaAmarela'>Cinza e Amarela</option>
