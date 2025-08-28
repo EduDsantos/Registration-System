@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirnameGlobal, "../frontend/dist", "index.html"));
   })
+}
 
-
-  const port = process.env.PORT || 5000
-  app.listen(port, () => { console.log(`🚀 Servidor rodando na porta: ${port}`) })
+const port = process.env.PORT || 5000
+app.listen(port, () => { console.log(`🚀 Servidor rodando na porta: ${port}`) })
