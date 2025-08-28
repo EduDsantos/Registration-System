@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../../services/api'
 import './Alunos.css'
 import Header from '../../components/Header/Header'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -17,7 +17,7 @@ export default function Alunos() {
         const fetchAlunos = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const response = await axios.get('http://localhost:5000/alunos/', {
+                const response = await api.get('/alunos', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -48,7 +48,7 @@ export default function Alunos() {
                 return
             }
 
-            await axios.delete(`http://localhost:5000/alunos/deletar/${id}`, {
+            await api.delete(`/alunos/deletar/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             setMensagem("Aluno deletado com sucesso!")
