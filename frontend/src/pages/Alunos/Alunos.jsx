@@ -5,9 +5,6 @@ import Header from '../../components/Header/Header'
 import { useNavigate, useParams } from 'react-router-dom'
 
 
-
-
-
 export default function Alunos() {
     const [alunos, setAlunos] = useState([])
     const [mensagem, setMensagem] = useState('')
