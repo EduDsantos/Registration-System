@@ -17,11 +17,7 @@ export default function Alunos() {
         const fetchAlunos = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const response = await api.get('/alunos', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
+                const response = await api.get('/alunos')
 
                 setAlunos(response.data)
             } catch (error) {
