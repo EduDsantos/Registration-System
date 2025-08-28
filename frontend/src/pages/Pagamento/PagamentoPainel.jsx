@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import api from '../../services/api'
 import Header from '../../components/Header/Header';
 import './pagamentoPainel.css'
 
@@ -14,7 +14,7 @@ export default function Pagamentos() {
 
   const fetchPagamentos = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/pagamentos')
+      const response = await api.get('/pagamentos')
       setPagamentos(response.data)
     } catch (error) {
       console.error('Erro ao buscar pagamentos', error)
@@ -25,7 +25,7 @@ export default function Pagamentos() {
 
   const marcarComoPago = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/pagamentos/${id}/pagar`)
+      await api.put(`/pagamentos/${id}/pagar`)
       fetchPagamentos()
     } catch (error) {
       console.error('Erro ao marcar como pago', error)
@@ -35,7 +35,7 @@ export default function Pagamentos() {
 
   const deletarPagamento = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/pagamentos/${id}`)
+      await api.delete(`/pagamentos/${id}`)
       fetchPagamentos()
     } catch (error) {
       console.error('Erro ao tentar deletar pagamento', error)
@@ -45,7 +45,7 @@ export default function Pagamentos() {
 
   const desmarcarPago = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/pagamentos/${id}/desmarcar`)
+      await api.put(`/${id}/desmarcar`)
       fetchPagamentos()
     } catch (error) {
       console.error('Erro ao desmarcar pagamento', error)

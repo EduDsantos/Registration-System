@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../../services/api'
 import './editar.css'
 import Header from '../../components/Header/Header'
 
@@ -28,7 +28,7 @@ const EditarAluno = () => {
         const fetchAlunos = async () => {
             try {
                 const token = localStorage.getItem('token')
-                const response = await axios.get(`http://localhost:5000/alunos/${id}`, {
+                const response = await api.get(`/alunos/${id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -55,7 +55,7 @@ const EditarAluno = () => {
 
         try {
             const token = localStorage.getItem('token')
-            await axios.put(`http://localhost:5000/alunos/editar/${id}`, form, {
+            await api.put(`/editar/${id}`, form, {
                 headers: { Authorization: `Bearer ${token}` }
             })
             setMensagemSucess('Aluno atualizado com sucesso!')

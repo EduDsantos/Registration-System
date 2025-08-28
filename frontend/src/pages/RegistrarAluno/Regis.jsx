@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../../services/api'
 import './regis.css'
 import Header from '../../components/Header/Header'
 import { Navigate, useNavigate } from 'react-router-dom'
@@ -47,7 +47,7 @@ export default function RegistrarAluno() {
             }
 
             const token = localStorage.getItem('token')
-            await axios.post('http://localhost:5000/alunos/cadastrar', dadosConvert, {
+            await api.post('/alunos/cadastrar', dadosConvert, {
                 'Content-Type': 'application/json',
                 headers: {
                     Authorization: `Bearer ${token}`

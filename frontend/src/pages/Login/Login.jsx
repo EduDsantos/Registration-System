@@ -16,7 +16,7 @@ export default function Login() {
         setErro('')
 
         try {
-            const res = await api.post('http://localhost:5000/treinador/login', { email, senha })
+            const res = await api.post('/auth/login', { email, senha })
             const token = res.data.token
             localStorage.setItem('token', token)
             navigate('/dashboard')
