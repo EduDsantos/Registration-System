@@ -104,7 +104,7 @@ export default function RegistrarAluno() {
 
                 <label>faixa</label>
                 <select name='faixa' value={form.faixa} onChange={handleChange}>
-                    <option onChange={handleChange} value='branca'>faixa</option>
+                    <option onChange={handleChange} value=''>faixa</option>
                     <option value='cinza'>Cinza</option>
                     <option value='branca'>Branca</option>
                     <option value='cinzaBranca'>Cinza e Branca</option>

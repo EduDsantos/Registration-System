@@ -29,11 +29,11 @@ app.use('/api/pagamentos', pagamentoRoutes);
 app.use('/api/treinador', treinadorRoutes);
 app.use('/api/auth', authRouters);
 
-// ✅ Servir frontend React em produção
+
 if (process.env.NODE_ENV === "production") {
   const __dirnameGlobal = path.resolve();
 
-  // Servir os arquivos estáticos da pasta build
+
   app.use(express.static(path.join(__dirnameGlobal, "../frontend/dist")));
 
   app.get("*", (req, res) => {
