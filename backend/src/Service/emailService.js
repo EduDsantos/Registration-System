@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const aluno = require('../Models/alunos')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -9,9 +10,8 @@ const transporter = nodemailer.createTransport({
 })
 
 async function enviarNotificacao(aluno, pagamento) {
-    const aluno = require('../Models/alunos')
     const mailOption = {
-        from: 'eduss2077@gmail.com',
+        from:'',
         to: aluno.email,
         subject: 'Vencimendo da Mensalidade - Raphael Teixeira academia',
         text: `Olá ${aluno.name}, sua mensalidade de R$${pagamento.valor} está pendente, por favor entre em contato para efetuar o pagamento!`
