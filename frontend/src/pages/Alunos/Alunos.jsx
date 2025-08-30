@@ -3,6 +3,7 @@ import api from '../../services/api'
 import './Alunos.css'
 import Header from '../../components/Header/Header'
 import { useNavigate, useParams } from 'react-router-dom'
+import apiPublic from '../../services/apiPublic'
 
 
 export default function Alunos() {
@@ -41,9 +42,7 @@ export default function Alunos() {
                 return
             }
 
-            await api.delete(`/alunos/deletar/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
+            await apiPublic.delete(`/alunos/deletar/${id}`)
             setMensagem("Aluno deletado com sucesso!")
             setTimeout(() => {
                 setMensagem('')
