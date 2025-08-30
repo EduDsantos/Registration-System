@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const aluno = require('../Models/alunos')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
