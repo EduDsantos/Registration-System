@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-// import api from '../../services/api'
+import api from '../../services/api'
 import './editar.css'
 import Header from '../../components/Header/Header'
 import apiPublic from '../../services/apiPublic'
@@ -28,12 +28,8 @@ const EditarAluno = () => {
     useEffect(() => {
         const fetchAlunos = async () => {
             try {
-                const token = localStorage.getItem('token')
-                const response = await api.get(`/alunos/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
+
+                const response = await apiPublic.get(`/alunos/${id}`)
                 setForm(response.data)
 
             } catch (err) {
