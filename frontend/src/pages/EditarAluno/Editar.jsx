@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import api from '../../services/api'
+// import api from '../../services/api'
 import './editar.css'
 import Header from '../../components/Header/Header'
+import apiPublic from '../../services/apiPublic'
 
 const EditarAluno = () => {
     const { id } = useParams()
@@ -54,10 +55,8 @@ const EditarAluno = () => {
         e.preventDefault()
 
         try {
-            const token = localStorage.getItem('token')
-            await api.put(`/editar/${id}`, form, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
+
+            await apiPublic.put(`/editar/${id}`, form)
             setMensagemSucess('Aluno atualizado com sucesso!')
             setTimeout(() => {
                 setMensagemErro('')
