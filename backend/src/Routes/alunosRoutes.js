@@ -95,7 +95,7 @@ router.get("/crescimento", async (req, res) => {
 });
 
 
-router.post('/cadastrar', autenticarToken, alunoController.criar)
+router.post('/cadastrar', alunoController.criar)
 router.get('/', autenticarToken, alunoController.listar)
 router.get('/:id', autenticarToken, alunoController.buscarPorId)
 router.put('/editar/:id', autenticarToken, alunoController.atualizar)

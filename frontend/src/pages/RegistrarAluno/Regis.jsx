@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import api from '../../services/api'
+import apiPublic from '../../services/apiPublic'
 import './regis.css'
 import Header from '../../components/Header/Header'
 import { Navigate, useNavigate } from 'react-router-dom'
@@ -46,7 +46,8 @@ export default function RegistrarAluno() {
                 mensalidade: Number(form.mensalidade)
             }
 
-            await api.post('/alunos/cadastrar', dadosConvert)
+
+            await apiPublic.post('/alunos/cadastrar', dadosConvert)
 
             setMensagemSucess('Aluno cadastrado com sucesso!')
             setTimeout(() => {

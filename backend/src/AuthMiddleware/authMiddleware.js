@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const treinador = require('../Models/treinador')
 
 function autenticarToken(req, res, next) {
-    const authHeader = req.headers['Authorization']
+    const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
 
     if (!token) {
