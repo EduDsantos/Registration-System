@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer')
-const aluno = require('../Models/alunos')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -10,6 +9,7 @@ const transporter = nodemailer.createTransport({
 })
 
 async function enviarNotificacao(aluno, pagamento) {
+    const aluno = require('../Models/alunos')
     const mailOption = {
         from: 'eduss2077@gmail.com',
         to: aluno.email,
