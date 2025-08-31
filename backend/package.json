@@ -17,8 +17,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",
     "node-cron": "^4.0.7",
+    "node-pix": "^1.5.2",
     "nodemailer": "^7.0.3",
     "nodemon": "^3.1.9",
+    "pix-payload": "^1.0.4",
+    "qrcode": "^1.5.4",
     "recharts": "^3.1.2",
     "registrationsystem": "file:"
   },

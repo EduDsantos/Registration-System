@@ -3,8 +3,8 @@ const { enviarNotificacao } = require('./emailService')
 const Aluno = require('../Models/alunos')
 const Pagamento = require('../Models/pagamento')
 
-cron.schedule('* * * * *', async () => {
-    console.log('Enviando notifcação Às 7h')
+cron.schedule('0 8 * * *', async () => {
+    console.log('Enviando notifcação Às 8h')
 
     try {
         const pagamentosPendentes = await Pagamento.find({ status: 'pendente' })

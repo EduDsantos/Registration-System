@@ -86,7 +86,7 @@ export default function Alunos() {
                                 <th>Nome</th>
                                 <th>Idade</th>
                                 <th>Faixa</th>
-                                <th>Status</th>
+                                <th>Email</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -99,7 +99,7 @@ export default function Alunos() {
                                         <td>{aluno.name}</td>
                                         <td>{aluno.idade}</td>
                                         <td>{aluno.faixa}</td>
-                                        <td>{aluno.status}</td>
+                                        <td>{aluno.email}</td>
                                         <td>
                                             <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
                                             <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>

@@ -1,5 +1,7 @@
 const nodemailer = require('nodemailer')
 const aluno = require('../Models/alunos')
+const { payload } = require('pix-payload')
+const QRCode = require('qrcode')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -10,11 +12,31 @@ const transporter = nodemailer.createTransport({
 })
 
 async function enviarNotificacao(aluno, pagamento) {
+
+    const emv = payload({
+        key: 'chavepix@seudominio.com',
+        name: 'Academia Raphael Teixeira',
+        city: 'AMERICANA',
+        amount: Number(pagamento.valor),
+        transactionId: 'MENSALIDADE_' + String(pagamento._id).slice(0, 25)
+    })
+
+    const qrCodeBase64 = await QRCode.toDataURL(emv)
+
+
     const mailOption = {
-        from:'edusantose30@gmail.com',
+        from: 'edusantose30@gmail.com',
         to: aluno.email,
         subject: 'Vencimendo da Mensalidade - Raphael Teixeira academia',
-        text: `Olá ${aluno.name}, sua mensalidade de R$${pagamento.valor} está pendente, por favor entre em contato para efetuar o pagamento!`
+        text: `Olá ${aluno.name}, sua mensalidade de R$${pagamento.valor} está pendente, por favor entre em contato para efetuar o pagamento!`,
+        html: `
+            <p>Olá ${aluno.name},</p>
+            <p>Sua mensalidade de <strong>R$${pagamento.valor}</strong> está pendente.</p>
+            <p>Chave Pix: <strong>chavepix@seudominio.com</strong></p>
+            <p>Ou escaneie o QR Code:</p>
+            <img src="${qrCodeBase64}" alt="QR Code Pix" />
+            <p><small>Pix copia e cola:</small><br><code>${emv}</code></p>
+           `
     }
     try {
         await transporter.sendMail(mailOption)
