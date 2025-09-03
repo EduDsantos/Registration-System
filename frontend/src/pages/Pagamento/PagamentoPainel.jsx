@@ -6,7 +6,8 @@ import './pagamentoPainel.css'
 export default function Pagamentos() {
   const [pagamentos, setPagamentos] = useState([])
   const [loading, setLoading] = useState(true)
-  const [abaAtiva, setAbaAtiva] = useState("pendentes") // 👉 controla qual aba está ativa
+  const [abaAtiva, setAbaAtiva] = useState("pendentes")
+  const [mensagem, setMensagem] = useState('')
 
   useEffect(() => {
     fetchPagamentos()
@@ -26,6 +27,10 @@ export default function Pagamentos() {
   const marcarComoPago = async (id) => {
     try {
       await api.put(`/pagamentos/${id}/pagar`)
+      setMensagem("O aluno pagou a mensalidade com sucesso!")
+      setTimeout(() => {
+        setMensagem('')
+      }, 3000)
       fetchPagamentos()
     } catch (error) {
       console.error('Erro ao marcar como pago', error)
@@ -63,6 +68,7 @@ export default function Pagamentos() {
       <Header />
       <div className='main-container'>
         <h2>Painel de Pagamentos</h2>
+          {mensagem  && <p style={{color:'green'}}>{mensagem}</p>}
 
 
         <div className="tabs">

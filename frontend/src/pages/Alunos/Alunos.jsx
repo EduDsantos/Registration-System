@@ -69,6 +69,38 @@ export default function Alunos() {
     }
 
 
+    function formatCpf(value) {
+        const cpf = value.replace(/\D/g, '');
+
+        if (cpf.length === 11) {
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "\$1.\$2.\$3-\$4");
+        }
+
+    }
+    function formatarCell(celular) {
+        if (!celular) return ""; 
+
+       
+        let limparValores = celular.toString().replace(/\D/g, "").substring(0, 11);
+        let numerosArray = limparValores.split("");
+        let numeroFormatado = "";
+
+        if (numerosArray.length > 0) {
+            numeroFormatado += `(${numerosArray.slice(0, 2).join("")})`;
+        }
+
+        if (numerosArray.length > 2) {
+            numeroFormatado += ` ${numerosArray.slice(2, 7).join("")}`;
+        }
+
+        if (numerosArray.length > 7) {
+            numeroFormatado += `-${numerosArray.slice(7, 11).join("")}`;
+        }
+
+        return numeroFormatado;
+    }
+
+
     if (loading) return <p> Carregando... </p>
 
     return (
@@ -82,7 +114,8 @@ export default function Alunos() {
                     <table className="tabela-container">
                         <thead className="container-vertical">
                             <tr>
-                                <th>cpf</th>
+                                <th>Cpf</th>
+                                <th>Telefone</th>
                                 <th>Nome</th>
                                 <th>Idade</th>
                                 <th>Faixa</th>
@@ -95,7 +128,8 @@ export default function Alunos() {
                                 console.log(aluno)
                                 return (
                                     <tr key={aluno.cpf}>
-                                        <td>{aluno.cpf}</td>
+                                        <td>{formatCpf(aluno.cpf)}</td>
+                                        <td>{formatarCell(aluno.telefone)}</td>
                                         <td>{aluno.name}</td>
                                         <td>{aluno.idade}</td>
                                         <td>{aluno.faixa}</td>

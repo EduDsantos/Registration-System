@@ -21,6 +21,8 @@ export default function RegistrarAluno() {
         mensalidade: '',
     })
 
+
+
     function formatarDatas(dateString) {
         return dateString ? dateString.split('T')[0] : ''
 
@@ -76,6 +78,10 @@ export default function RegistrarAluno() {
         Navigate('/alunos')
     }
 
+    function validarTell(telefone) {
+        let numero = telefone.replace(/\D/g, '')
+        return numero
+    }
 
     return (
 
@@ -98,7 +104,7 @@ export default function RegistrarAluno() {
                 <input type="email" name='email' value={form.email} onChange={handleChange} placeholder='email' required />
 
                 <label>telefone</label>
-                <input type="text" name='telefone' value={form.telefone} onChange={handleChange} placeholder='telefone' required />
+                <input type="text" name='telefone' value={validarTell(form.telefone)} onChange={handleChange} placeholder='telefone' maxLength={11} required />
 
                 <label>CPF</label>
                 <input type="text" name='cpf' value={form.cpf.replace(/\D/g, '')} onChange={handleChange} placeholder='CPF' required />

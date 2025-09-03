@@ -15,4 +15,6 @@ const alunosSchema = new mongoose.Schema({
     pago: { type: Boolean, default: false }
 }, {timestamps: true})
 
+
+
 module.exports = mongoose.model("alunos", alunosSchema)

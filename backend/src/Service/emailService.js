@@ -27,10 +27,9 @@ async function enviarNotificacao(aluno, pagamento) {
     const mailOption = {
         from: 'edusantose30@gmail.com',
         to: aluno.email,
-        subject: 'Vencimendo da Mensalidade - Raphael Teixeira academia',
-        text: `Olá ${aluno.name}, sua mensalidade de R$${pagamento.valor} está pendente, por favor entre em contato para efetuar o pagamento!`,
+        subject: 'Vencimento da Mensalidade - Raphael Teixeira academia',
+        text: `Olá ${aluno.name}`,
         html: `
-            <p>Olá ${aluno.name},</p>
             <p>Sua mensalidade de <strong>R$${pagamento.valor}</strong> está pendente.</p>
             <p>Chave Pix: <strong>chavepix@seudominio.com</strong></p>
             <p>Ou escaneie o QR Code:</p>
