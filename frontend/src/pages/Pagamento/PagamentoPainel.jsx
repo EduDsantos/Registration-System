@@ -50,7 +50,7 @@ export default function Pagamentos() {
 
   const desmarcarPago = async (id) => {
     try {
-      await api.put(`/${id}/desmarcar`)
+      await api.put(`/pagamentos/${id}/desmarcar`)
       fetchPagamentos()
     } catch (error) {
       console.error('Erro ao desmarcar pagamento', error)

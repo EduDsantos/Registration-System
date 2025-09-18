@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 async function enviarNotificacao(aluno, pagamento) {
 
     const emv = payload({
-        key: 'chavepix@seudominio.com',
+        key: '339.906.588-40',
         name: 'Academia Raphael Teixeira',
         city: 'AMERICANA',
         amount: Number(pagamento.valor),
@@ -25,13 +25,13 @@ async function enviarNotificacao(aluno, pagamento) {
 
 
     const mailOption = {
-        from: 'edusantose30@gmail.com',
+        from: 'raphaelteixeirajiujitsu@gmail.com',
         to: aluno.email,
         subject: 'Vencimento da Mensalidade - Raphael Teixeira academia',
         text: `Olá ${aluno.name}`,
         html: `
             <p>Sua mensalidade de <strong>R$${pagamento.valor}</strong> está pendente.</p>
-            <p>Chave Pix: <strong>chavepix@seudominio.com</strong></p>
+            <p>Chave Pix: CPF: <strong>339.906.588-40</strong></p>
             <p>Ou escaneie o QR Code:</p>
             <img src="${qrCodeBase64}" alt="QR Code Pix" />
             <p><small>Pix copia e cola:</small><br><code>${emv}</code></p>
