@@ -85,10 +85,10 @@ export default function RegistrarAluno() {
 
     return (
 
-        <div className='main-container'>
+        <div className='main-container-Regis'>
             <Header />
             <h2>Registrar Aluno</h2>
-            <button onClick={alunos}>Voltar</button>
+            <button onClick={alunos} class='btnSair'>Voltar</button>
 
             {mensagemSucess && <p style={{ color: 'green' }} >{mensagemSucess}</p>}
             {mensagemErro && <p style={{ color: 'red' }}> {mensagemErro}</p>}
@@ -144,8 +144,8 @@ export default function RegistrarAluno() {
                 <label>Data de Pagamento</label>
                 <input type="Date" name='dataPagamento' value={formatarDatas(form.dataPagamento)} onChange={handleChange} placeholder='dataPagamento' required />
 
-                <label>Restrição Medica</label>
-                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea>
+                {/* <label>Restrição Medica</label>
+                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea> */}
 
                 <button className='btnSub' type='submit'>Cadastrar</button>
 

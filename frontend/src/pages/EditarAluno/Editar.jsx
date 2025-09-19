@@ -79,10 +79,10 @@ const EditarAluno = () => {
     }
     return (
 
-        <div className='main-container'>
+        <div className='main-container-Edit'>
             <Header />
             <h2>Editar Aluno</h2>
-            <button onClick={Alunos}>Voltar</button>
+            <button onClick={Alunos} class="btnSair">Voltar</button>
 
             {mensagemSucess && <p style={{ color: 'green' }} >{mensagemSucess}</p>}
             {mensagemErro && <p style={{ color: 'red' }}> {mensagemErro}</p>}
@@ -136,8 +136,8 @@ const EditarAluno = () => {
                 <label>Data de Pagamento</label>
                 <input type="Date" name='dataPagamento' value={formatarDatas(form.dataPagamento)} onChange={handleChange} placeholder='dataPagamento' required />
 
-                <label>Restrição Medica</label>
-                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea>
+                {/* <label>Restrição Medica</label>
+                <textarea name='resMedic' value={form.resMedic} onChange={handleChange}></textarea> */}
                 <button className='btnSub' type='submit'>Salvar alteração</button>
 
             </form>
