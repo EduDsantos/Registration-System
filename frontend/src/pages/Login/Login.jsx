@@ -14,13 +14,13 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault()
         setErro('')
-
         try {
             const res = await api.post('/auth/login', { email, senha })
             const token = res.data.token
             localStorage.setItem('token', token)
             navigate('/dashboard')
-
+            console.log("Tentando logar com:", email, senha)
+            
         } catch (err) {
             setErro(err.response?.data?.message || 'Erro ao fazer login')
         }
