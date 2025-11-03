@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
 import Login from './pages/Login/Login'
 import { Footer } from './components/Footer/footer'
 import Dashboard from './pages/Dashboard/Dashboard'
@@ -7,6 +8,7 @@ import Pagamentos from './pages/Pagamento/PagamentoPainel'
 import RegistrarAluno from './pages/RegistrarAluno/Regis'
 import EditarAluno from './pages/EditarAluno/Editar'
 import DeletarAluno from './pages/Alunos/Alunos'
+import Calendario from './pages/Calendario/Calendario'
 
 
 
@@ -18,13 +20,14 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/alunos" element={<Alunos />} />
+        <Route path="/calendario" element={<Calendario />} />
         <Route path="/pagamentos" element={<Pagamentos />} />
         <Route path="/cadastrar" element={<RegistrarAluno />} />
         <Route path="/editar/:id" element={<EditarAluno />} />
         <Route path="/deletar/:id" element={<DeletarAluno />} />
       </Routes>
+      <Footer />
 
-      {/* <Footer /> */}
     </BrowserRouter>
   )
 }

@@ -27,6 +27,7 @@
   align-items: center;
   margin: auto;
   width: 80%;
+
 }
 
 .tabs {
@@ -89,4 +90,73 @@ button {
   padding: 20px;
   margin-right: 10px;
 }
- 
+
+.desktop-view {
+  display: block;
+}
+
+.mobile-view {
+  display: none;
+}
+
+
+@media (max-width: 1024px) {
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    /* scroll liberado */
+    max-height: 70vh;   /* diminui pra caber melhor */
+    overflow-y: auto;
+
+    padding-right: 8px;
+  }
+
+  /* cards ficam 100% dentro do scroll */
+  .card {
+    background: #1f2937;
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;  /* impede que o card achate dentro do scroll */
+  }
+
+  .card-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Botões */
+.btn {
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.btn.green {
+  background: #4CAF50;
+}
+
+.btn.red {
+  background: #f44336;
+}
+
+.btn.orange {
+  background: #ff9800;
+}
+
+.btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}

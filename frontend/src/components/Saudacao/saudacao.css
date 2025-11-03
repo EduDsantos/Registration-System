@@ -1,12 +1,4 @@
-.saudacao-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.1);
-}
+.saudacao-header {}
 
 .saudacao-header h1 {
     margin: 0;
@@ -19,4 +11,23 @@
     margin: 0;
     font-size: 16px;
     color: #666;
+}
+
+@media (max-width: 1024px) {
+    .saudacao-header {
+        display: grid;
+    }
+
+    .saudacao-header h1 {
+        margin: auto;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .saudacao-header p {
+        margin: 0;
+        font-size: 16px;
+        color: #666;
+    }
 }

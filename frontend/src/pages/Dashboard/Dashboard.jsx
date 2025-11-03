@@ -5,6 +5,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 import "./dashboard.css"
 import Header from "../../components/Header/Header"
 import api from "../../services/api"
+import Saudacao from "../../components/Saudacao/Saudacao"
 
 export default function Dashboard() {
   const [alunosAtivos, setAlunosAtivos] = useState(0);
@@ -12,7 +13,6 @@ export default function Dashboard() {
   const [pagAtrasados, setAtrasados] = useState(0);
   const [refetchKey, setRefetchKey] = useState(0);
 
-  // 🔹 Mock inicial para não dar erro
   const [matriculas, setMatriculas] = useState([]);
 
   useEffect(() => {
@@ -40,11 +40,9 @@ export default function Dashboard() {
   return (
     <div className="dashboard-container">
         <Header />
-        <h2>Olá, Raphael!</h2>
+        <Saudacao />
       <div className="main-container">
-        <p className="date">
-          {new Date().toLocaleString("pt-BR", { dateStyle: "full", timeStyle: "short" })}
-        </p>
+        
         <div className="cards-container">
           <div className="card green">
             <Users size={32} />
@@ -57,10 +55,10 @@ export default function Dashboard() {
             <p>Pagamentos atrasados</p>
           </div>
         </div>
-        {/* 🔹 Gráfico agora usa `matriculas` */}
+       
         <div className="chart-container">
           <h3>Evolução de Matrículas (Mensal)</h3>
-          <ResponsiveContainer width="100%" height={300}>
+          <ResponsiveContainer width="100%" height={220}>
             <LineChart data={matriculas}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="mes" />

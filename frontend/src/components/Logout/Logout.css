@@ -1,0 +1,12 @@
+.logout-btn{
+    font-size: 15px;
+    display: flex;
+    width: 70px;
+}
+
+@media (max-width: 1024px){
+    .logout-btn{
+        margin: 0;
+        
+    }
+}

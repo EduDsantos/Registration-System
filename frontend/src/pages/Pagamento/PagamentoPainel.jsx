@@ -8,7 +8,7 @@ export default function Pagamentos() {
   const [loading, setLoading] = useState(true)
   const [abaAtiva, setAbaAtiva] = useState("pendentes")
   const [mensagem, setMensagem] = useState('')
-  const [loadingId, setLoadingId] = useState(null) // id em processamento
+  const [loadingId, setLoadingId] = useState(null)
 
   useEffect(() => {
     fetchPagamentos()
@@ -26,9 +26,7 @@ export default function Pagamentos() {
   }
 
   const marcarComoPago = async (id) => {
-    const confirmar = window.confirm("Deseja realmente marcar este pagamento como pago?");
-    if (!confirmar) return;
-
+    if (!window.confirm("Deseja realmente marcar este pagamento como pago?")) return;
     try {
       setLoadingId(id)
       await api.put(`/pagamentos/${id}/pagar`)
@@ -44,7 +42,6 @@ export default function Pagamentos() {
 
   const deletarPagamento = async (id) => {
     if (!window.confirm("Tem certeza que deseja excluir este pagamento?")) return;
-
     try {
       await api.delete(`/pagamentos/${id}`)
       fetchPagamentos()
@@ -55,7 +52,6 @@ export default function Pagamentos() {
 
   const desmarcarPago = async (id) => {
     if (!window.confirm("Deseja realmente reverter este pagamento para pendente?")) return;
-
     try {
       await api.put(`/pagamentos/${id}/desmarcar`)
       fetchPagamentos()
@@ -93,95 +89,120 @@ export default function Pagamentos() {
 
         {/* Pendentes */}
         {abaAtiva === "pendentes" && (
-          <table className='table-container'>
-            <thead>
-              <tr>
-                <th>Aluno</th>
-                <th>Valor</th>
-                <th>Status</th>
-                <th>Data de Vencimento</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop (tabela) */}
+            <table className='table-container desktop-view'>
+              <thead>
+                <tr>
+                  <th>Aluno</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Data de Vencimento</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {pendentes.map((pagamento) => (
+                  <tr key={pagamento._id}>
+                    <td>{pagamento.alunoId?.name || 'Desconhecido'}</td>
+                    <td>R$ {pagamento.valor}</td>
+                    <td><span style={{ color: 'red', fontWeight: 'bold' }}>{pagamento.status}</span></td>
+                    <td>{new Date(pagamento.dataVencimento).toLocaleDateString()}</td>
+                    <td>
+                      <button
+                        disabled={loadingId === pagamento._id}
+                        onClick={() => marcarComoPago(pagamento._id)}
+                        className="btn green"
+                      >
+                        {loadingId === pagamento._id ? 'Processando...' : 'Marcar como pago'}
+                      </button>
+                      <button
+                        onClick={() => deletarPagamento(pagamento._id)}
+                        className="btn red"
+                      >
+                        Deletar
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Mobile (cards) */}
+            <div className="cards-container mobile-view">
               {pendentes.map((pagamento) => (
-                <tr key={pagamento._id}>
-                  <td>{pagamento.alunoId?.name || 'Desconhecido'}</td>
-                  <td>R$ {pagamento.valor}</td>
-                  <td>
-                    <span style={{ color: 'red', fontWeight: 'bold' }}>
-                      {pagamento.status}
-                    </span>
-                  </td>
-                  <td>{new Date(pagamento.dataVencimento).toLocaleDateString()}</td>
-                  <td>
+                <div className="card" key={pagamento._id}>
+                  <p><strong>Aluno:</strong> {pagamento.alunoId?.name || 'Desconhecido'}</p>
+                  <p><strong>Valor:</strong> R$ {pagamento.valor}</p>
+                  <p><strong>Status:</strong> <span style={{ color: 'red', fontWeight: 'bold' }}>{pagamento.status}</span></p>
+                  <p><strong>Vencimento:</strong> {new Date(pagamento.dataVencimento).toLocaleDateString()}</p>
+                  <div className="card-actions">
                     <button
                       disabled={loadingId === pagamento._id}
                       onClick={() => marcarComoPago(pagamento._id)}
-                      style={{
-                        background: loadingId === pagamento._id ? '#ccc' : '#4CAF50',
-                        color: 'white',
-                        padding: '6px 10px',
-                        borderRadius: '5px',
-                        cursor: loadingId === pagamento._id ? 'not-allowed' : 'pointer'
-                      }}
+                      className="btn green"
                     >
                       {loadingId === pagamento._id ? 'Processando...' : 'Marcar como pago'}
                     </button>
                     <button
                       onClick={() => deletarPagamento(pagamento._id)}
-                      style={{ marginLeft: '8px', background: '#f44336', color: 'white' }}
+                      className="btn red"
                     >
                       Deletar
                     </button>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
 
-        
+        {/* Histórico */}
         {abaAtiva === "historico" && (
-          <table className='table-container'>
-            <thead>
-              <tr>
-                <th>Aluno</th>
-                <th>Valor</th>
-                <th>Status</th>
-                <th>Data de Pagamento</th>
-                <th>Ação</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pagos.map((pagamento) => (
-                <tr key={pagamento._id}>
-                  <td>{pagamento.alunoId?.name || 'Desconhecido'}</td>
-                  <td>R$ {pagamento.valor}</td>
-                  <td>
-                    <span style={{ color: 'green', fontWeight: 'bold' }}>
-                      {pagamento.status}
-                    </span>
-                  </td>
-                  <td>{pagamento.dataPagamento ? new Date(pagamento.dataPagamento).toLocaleDateString() : '-'}</td>
-                  <td>
-                    <button
-                      onClick={() => desmarcarPago(pagamento._id)}
-                      style={{ background: '#ff9800', color: 'white' }}
-                    >
-                      Reverter
-                    </button>
-                    <button
-                      onClick={() => deletarPagamento(pagamento._id)}
-                      style={{ marginLeft: '8px', background: '#f44336', color: 'white' }}
-                    >
-                      Deletar
-                    </button>
-                  </td>
+          <>
+            {/* Desktop */}
+            <table className='table-container desktop-view'>
+              <thead>
+                <tr>
+                  <th>Aluno</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th>Data de Pagamento</th>
+                  <th>Ação</th>
                 </tr>
+              </thead>
+              <tbody>
+                {pagos.map((pagamento) => (
+                  <tr key={pagamento._id}>
+                    <td>{pagamento.alunoId?.name || 'Desconhecido'}</td>
+                    <td>R$ {pagamento.valor}</td>
+                    <td><span style={{ color: 'green', fontWeight: 'bold' }}>{pagamento.status}</span></td>
+                    <td>{pagamento.dataPagamento ? new Date(pagamento.dataPagamento).toLocaleDateString() : '-'}</td>
+                    <td>
+                      <button onClick={() => desmarcarPago(pagamento._id)} className="btn orange">Reverter</button>
+                      <button onClick={() => deletarPagamento(pagamento._id)} className="btn red">Deletar</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Mobile */}
+            <div className="cards-container mobile-view">
+              {pagos.map((pagamento) => (
+                <div className="card" key={pagamento._id}>
+                  <p><strong>Aluno:</strong> {pagamento.alunoId?.name || 'Desconhecido'}</p>
+                  <p><strong>Valor:</strong> R$ {pagamento.valor}</p>
+                  <p><strong>Status:</strong> <span style={{ color: 'green', fontWeight: 'bold' }}>{pagamento.status}</span></p>
+                  <p><strong>Pagamento:</strong> {pagamento.dataPagamento ? new Date(pagamento.dataPagamento).toLocaleDateString() : '-'}</p>
+                  <div className="card-actions">
+                    <button onClick={() => desmarcarPago(pagamento._id)} className="btn orange">Reverter</button>
+                    <button onClick={() => deletarPagamento(pagamento._id)} className="btn red">Deletar</button>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
       </div>
     </div>

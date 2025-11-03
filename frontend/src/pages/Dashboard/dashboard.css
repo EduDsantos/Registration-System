@@ -1,23 +1,16 @@
-.dashboard-container {
-  padding: 4px;
-  font-family: Arial, sans-serif;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
 .dashboard-title {
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 20px;
   color: #333;
-  
+
 }
 
-.main-container{
+.main-container {
   background-color: #edf0f3;
   width: 99%;
   padding: 50px;
- border-radius: 10px;
+  border-radius: 10px;
   margin: 20px auto;
 }
 
@@ -28,6 +21,7 @@
   width: 50%;
   margin: 20px auto;
 }
+
 
 .card {
   background: white;
@@ -40,6 +34,17 @@
   margin-left: 50px;
 }
 
+@media (max-width: 768px) {
+  .cards-container {
+    width: 50%;
+    display: contents;
+  }
+
+  .card{
+    margin-bottom: 10px;
+  }
+
+}
 .card:hover {
   transform: translateY(-4px);
 }
@@ -79,10 +84,10 @@
 /* área de gráficos */
 .chart-container {
   display: grid;
- align-items: center;
+  align-items: center;
 
 }
 
-.chart-container > h3{
+.chart-container>h3 {
   margin: auto;
 }

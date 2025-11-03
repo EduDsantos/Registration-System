@@ -78,9 +78,9 @@ export default function Alunos() {
 
     }
     function formatarCell(celular) {
-        if (!celular) return ""; 
+        if (!celular) return "";
 
-       
+
         let limparValores = celular.toString().replace(/\D/g, "").substring(0, 11);
         let numerosArray = limparValores.split("");
         let numeroFormatado = "";
@@ -108,6 +108,7 @@ export default function Alunos() {
             <Header />
             <div className='main-container'>
                 <h2>Lista de Alunos</h2>
+                <button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>
                 {alunos.length === 0 ? (
                     console.log('')
                 ) : (
@@ -124,28 +125,24 @@ export default function Alunos() {
                             </tr>
                         </thead>
                         <tbody className="container-horizontal">
-                            {alunos.map((aluno) => {
-                                console.log(aluno)
-                                return (
-                                    <tr key={aluno.cpf}>
-                                        <td>{formatCpf(aluno.cpf)}</td>
-                                        <td>{formatarCell(aluno.telefone)}</td>
-                                        <td>{aluno.name}</td>
-                                        <td>{aluno.idade}</td>
-                                        <td>{aluno.faixa}</td>
-                                        <td>{aluno.email}</td>
-                                        <td>
-                                            <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
-                                            <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>
-                                        </td>
-                                    </tr>
-
-                                );
-                            })}
+                            {alunos.map((aluno) => (
+                                <tr key={aluno._id}>
+                                    <td data-label="CPF">{formatCpf(aluno.cpf)}</td>
+                                    <td data-label="Telefone">{formatarCell(aluno.telefone)}</td>
+                                    <td data-label="Nome">{aluno.name}</td>
+                                    <td data-label="Idade">{aluno.idade}</td>
+                                    <td data-label="Faixa">{aluno.faixa}</td>
+                                    <td data-label="Email">{aluno.email}</td>
+                                    <td data-label="Ações">
+                                        <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
+                                        <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 )}
-                <button className='btnCadastrar' onClick={CadastrarAluno}>Cadastrar aluno</button>
+                
             </div>
         </div>
     );
