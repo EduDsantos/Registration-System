@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import './calendario.css';
 import api from "../../services/api"
+import apiPublic from '../../services/apiPublic';
 
 export default function Calendario() {
   const [data, setData] = useState('');
