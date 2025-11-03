@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import './calendario.css';
-import axios from 'axios';
 import api from "../../services/api"
 
 export default function Calendario() {
@@ -25,16 +24,23 @@ export default function Calendario() {
   }
 
   async function Gerar() {
-    const alunosPresentes = alunos
-      .filter(a => selecionados.includes(a._id))
-      .map(a => ({ id: a._id, nome: a.nome }));
+    try {
+      const alunosPresentes = alunos
+        .filter(a => selecionados.includes(a._id))
+        .map(a => ({ id: a._id, nome: a.nome }));
 
-    await api.post("/aulas", {
-      data, horario, tipo, alunosPresentes
-    });
+      const response = await api.post("/aula", {
+        data, horario, tipo, alunosPresentes
+      });
 
-    alert("Aula criada com sucesso!");
+      console.log("Resposta da API:", response.data);
+      alert("Aula criada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao criar aula:", error.response?.data || error.message);
+      alert("Erro ao criar aula. Verifique o console para mais detalhes.");
+    }
   }
+
 
   return (
     <>
