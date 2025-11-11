@@ -9,6 +9,8 @@ import RegistrarAluno from './pages/RegistrarAluno/Regis'
 import EditarAluno from './pages/EditarAluno/Editar'
 import DeletarAluno from './pages/Alunos/Alunos'
 import Calendario from './pages/Calendario/Calendario'
+import CriarAula from './pages/CriarAula/CriarAula'
+import PresencasAula from './pages/PresencasAula/PrensecaAula'
 
 
 
@@ -25,6 +27,9 @@ function App() {
         <Route path="/cadastrar" element={<RegistrarAluno />} />
         <Route path="/editar/:id" element={<EditarAluno />} />
         <Route path="/deletar/:id" element={<DeletarAluno />} />
+        <Route path="/aula" element={<CriarAula />} />
+        <Route path="/aula/:id/presencas" element={<PresencasAula />} />
+
       </Routes>
       <Footer />
 

@@ -11,24 +11,27 @@ export default function Calendario() {
   const [alunos, setAlunos] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
 
+
   useEffect(() => {
+    const fetchAlunos = async () => {
+      try {
 
-    api.get("/alunos")
-      .then(res => setAlunos(res.data))
-      .catch(err => console.error(err));
-  }, []);
+        const response = await api.get('/alunos')
 
-  function toggleAluno(id) {
-    setSelecionados(prev =>
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
-  }
+        setAlunos(response.data)
+      } catch (error) {
+        console.log('Erro ao buscar alunos:', error)
+      }
+    }
+
+    fetchAlunos()
+  }, [])
 
   async function Gerar() {
     try {
       const alunosPresentes = alunos
         .filter(a => selecionados.includes(a._id))
-        .map(a => ({ id: a._id, nome: a.nome }));
+        .map(a => ({ id: a._id, name: a.name }));
 
       const response = await api.post("/aula", {
         data, horario, tipo, alunosPresentes
@@ -46,39 +49,57 @@ export default function Calendario() {
   return (
     <>
       <Header />
-      <div className="calendario-container">
-        <h1>Calendário de Aulas</h1>
-
-        <div className="form-calendario">
-          <label>Data:</label>
-          <input type="date" value={data} onChange={e => setData(e.target.value)} />
-
-          <label>Horário:</label>
-          <input type="time" value={horario} onChange={e => setHorario(e.target.value)} />
-
-          <label>Tipo de Aula:</label>
-          <select value={tipo} onChange={e => setTipo(e.target.value)}>
-            <option value="">Selecione</option>
-            <option value="Jiu-Jitsu">Jiu-Jitsu</option>
-            <option value="Muay Thai">Muay Thai</option>
-            <option value="Boxe">Boxe</option>
-          </select>
-
-          <h3>Selecionar Alunos Presentes:</h3>
-          {alunos.map(a => (
-            <label key={a._id}>
-              <input
-                type="checkbox"
-                checked={selecionados.includes(a._id)}
-                onChange={() => toggleAluno(a._id)}
-              />
-              {a.nome}
-            </label>
-          ))}
-
-          <button className="btnAula" onClick={Gerar}>Gerar Aula</button>
+      <h1 className='h1Calendario'>Calendário de Aulas</h1>
+      <section className="main-content">
+        <div className="calendario-container">
+          <div className="form-calendario">
+            <h2 className='h2Criar'>Criar Aula</h2>
+            <label>Data:</label>
+            <input type="date" value={data} onChange={e => setData(e.target.value)} />
+            <label>Horário:</label>
+            <input type="time" value={horario} onChange={e => setHorario(e.target.value)} />
+            <label>Tipo de Aula:</label>
+            <select value={tipo} onChange={e => setTipo(e.target.value)}>
+              <option value="">Selecione</option>
+              <option value="Jiu-Jitsu">Jiu-Jitsu</option>
+              <option value="Muay Thai">Muay Thai</option>
+              <option value="Boxe">Boxe</option>
+            </select>
+            <button className="btnAula" onClick={Gerar}>Gerar Aula</button>
+          </div>
         </div>
-      </div>
+
+        <section className='Alunos-content'>
+
+          <h2 className='h2Presentes'>Alunos Presentes</h2>
+          <table className='Alunos-presentes'>
+            <thead className='container-vertical'>
+              <tr>
+                <th>Nome</th>
+                <th>Faixa</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody className='container-alunos'>
+              {alunos.map((aluno) => (
+                <tr key={aluno._id}>
+                  <td data-label="Nome">{aluno.name}</td>
+                  <td data-label="Faixa">{aluno.faixa}</td>
+                  <td data-label="Acoes">
+                    <button className='btnPresensa' onClick={() => MarcarPresenca(aluno._id)}>Presença</button>
+                    <button className='btnPresensa' onClick={() => MarcarFalta(aluno._id)}>Falta</button>
+                  </td>
+                </tr>
+              ))}
+
+            </tbody>
+
+          </table>
+        </section>
+      </section>
+
+
     </>
   );
 }

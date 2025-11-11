@@ -1,0 +1,42 @@
+.main-content {
+  padding: 30px;
+}
+
+.h1Presenca {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-aula {
+  margin-bottom: 30px;
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.tabela-presenca {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.tabela-presenca th, .tabela-presenca td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.presente {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+}
+
+.btnSalvar {
+  background: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

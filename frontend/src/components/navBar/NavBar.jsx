@@ -19,6 +19,8 @@ export default function NavBar() {
                 <li><a href="/calendario">Calendario</a></li>
                 <li><a href="/alunos">Lista de Alunos</a></li>
                 <li><a href="/pagamentos">Pagamentos</a></li>
+                <li><a href="/aulas">Criar Aula</a></li>
+                {/* <li><a href="/presenca">Criar Aula</a></li> */}
             </ul>
         </nav>
     )
