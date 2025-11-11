@@ -12,8 +12,17 @@ const alunosSchema = new mongoose.Schema({
     dataCadastro: { type: Date, default: Date.now },
     dataPagamento: { type: Date, default: Date.now },
     ativo: { type: Boolean, default: true },
-    pago: { type: Boolean, default: false }
-}, {timestamps: true})
+    pago: { type: Boolean, default: false },
+    historicoPresencas: [
+        {
+            aulaId: { type: mongoose.Schema.Types.ObjectId, ref: 'aula' },
+            data: String,
+            horario: String,
+            tipo: String,
+            presente: Boolean
+        }
+    ]
+}, { timestamps: true })
 
 
 
