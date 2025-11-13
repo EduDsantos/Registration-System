@@ -6,7 +6,14 @@ const alunosSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     telefone: { type: String, required: true },
     cpf: { type: String, required: true, unique: true },
-    faixa: { type: String, required: true },
+    modalidade: { type: String, required: true },
+    faixa: {
+        type: String,
+        required: function () {
+            return this.modalidade?.toLowerCase() !== 'muay thai';
+        },
+        default: 'N/A'
+    },
     resMedic: { type: String, required: false },
     mensalidade: { type: Number, required: true },
     dataCadastro: { type: Date, default: Date.now },
@@ -18,7 +25,6 @@ const alunosSchema = new mongoose.Schema({
             aulaId: { type: mongoose.Schema.Types.ObjectId, ref: 'aula' },
             data: String,
             horario: String,
-            tipo: String,
             presente: Boolean
         }
     ]

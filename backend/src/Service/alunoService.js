@@ -7,9 +7,19 @@ async function criarAluno(dados) {
     const cpfExistente = await Aluno.findOne({ cpf: dados.cpf })
     if (cpfExistente) throw new Error("Já existe um aluno com esse CPF")
 
-    const faixaRequire = await Aluno.findOne({ faixa: dados.faixa })
-    if (faixaRequire) throw new Error("Selecione uma faixa")
 
+    if (!dados.modalidade) {
+        throw new Error("Selecione uma modalidade")
+    }
+
+    if (dados.modalidade === 'Muay Thai') {
+        dados.faixa = 'N/A'
+    } else if (!dados.faixa) {
+        throw new Error("Selecione uma faixa")
+    }
+    if (dados.modalidade?.toLowerCase() === 'muay thai') {
+        dados.faixa = 'N/A';
+    }
 
     const novoAluno = new Aluno({
         name: dados.name,
@@ -20,6 +30,7 @@ async function criarAluno(dados) {
         faixa: dados.faixa,
         resMedic: dados.resMedic,
         mensalidade: dados.mensalidade,
+        modalidade: dados.modalidade,
         pago: dados.pago
 
     })

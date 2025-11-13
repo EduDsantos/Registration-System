@@ -8,3 +8,4 @@ router.get('/alunos/:tipo', aulasController.listarAlunosPorModalidade);
 router.post('/marcar', aulasController.marcarPresenca);
 
 module.exports = router;
+                    

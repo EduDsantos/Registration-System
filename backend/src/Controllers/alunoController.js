@@ -20,10 +20,11 @@ async function criar(req, res) {
 
         })
 
+   
         await novoPagamento.save()
 
         res.status(200).json({ aluno, Pagamento: novoPagamento })
-    
+
     } catch (error) {
         res.status(400).json({ erro: error.message })
     }
