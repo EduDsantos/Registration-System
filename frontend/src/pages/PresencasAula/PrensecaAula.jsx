@@ -17,9 +17,9 @@ export default function PresencasAula() {
   useEffect(() => {
     async function fetchAlunos() {
       try {
-        const tipoAula = aulaInfo.tipo;
+        const tipoAula = aulaInfo.modalidade;
         const response = await apiPublic.get("/alunos");
-        const alunosFiltrados = response.data.filter(a => a.tipo === tipoAula);
+        const alunosFiltrados = response.data.filter(a => a.modalidade === tipoAula);
         setAlunos(alunosFiltrados);
       } catch (error) {
         console.error("Erro ao buscar alunos:", error);
@@ -27,7 +27,7 @@ export default function PresencasAula() {
     }
 
     fetchAlunos();
-  }, [aulaInfo.tipo]);
+  }, [aulaInfo.modalidade]);
 
   function togglePresenca(alunoId) {
     if (selecionados.includes(alunoId)) {
@@ -48,7 +48,7 @@ export default function PresencasAula() {
         _id: id,
         data: aulaInfo.data,
         horario: aulaInfo.horario,
-        tipo: aulaInfo.tipo,
+        modalidade: aulaInfo.modalidade,
         alunosPresentes,
       });
 
@@ -67,7 +67,7 @@ export default function PresencasAula() {
         <h1 className="h1Presenca">Registrar Presenças</h1>
 
         <div className="info-aula">
-          <p><strong>Modalidade:</strong> {aulaInfo.tipo}</p>
+          <p><strong>Modalidade:</strong> {aulaInfo.modalidade}</p>
           <p><strong>Data:</strong> {aulaInfo.data}</p>
           <p><strong>Horário:</strong> {aulaInfo.horario}</p>
         </div>

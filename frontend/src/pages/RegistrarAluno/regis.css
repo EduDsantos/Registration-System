@@ -15,7 +15,7 @@
     background: #f9f9f9;
 }
 
-.main-container-Regis h1 {
+.main-container-Regis h1, h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #333;
@@ -78,6 +78,14 @@
 
 .btnSub:hover {
     background-color: #0056b3;
+}
+
+.btnSair{
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 .mensagem {

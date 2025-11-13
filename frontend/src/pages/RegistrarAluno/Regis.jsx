@@ -131,7 +131,7 @@ export default function RegistrarAluno() {
                     disabled={form.modalidade === 'Muay Thai'}
                     className={form.modalidade === 'Muay Thai' ? 'disabled-select' : ''}
                 >
-                    <option onChange={handleChange} value={form.faixa}>faixa</option>
+                    <option onChange={handleChange} value=''>faixa</option>
                     <option value='branca'>Branca</option>
                     <option value='azul'>Azul</option>
                     <option value='roxa'>Roxa</option>
