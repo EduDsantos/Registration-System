@@ -19,6 +19,7 @@ export default function RegistrarAluno() {
         faixa: '',
         resMedic: '',
         mensalidade: '',
+        modalidade: '',
     })
 
 
@@ -29,48 +30,50 @@ export default function RegistrarAluno() {
     }
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        const { name, value } = e.target;
+
+        setForm((prev) => ({
+            ...prev,
+            [name]: value,
+            ...(name === 'modalidade' && value === 'Muay Thai' ? { faixa: 'N/A' } : {}),
+            ...(name === 'modalidade' && value !== 'Muay Thai' ? { faixa: '' } : {})
+        }));
     }
 
-
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        // const navigate = useNavigate()
+        e.preventDefault();
 
-        if (!form.faixa) {
-            setMensagemErro("Selecione uma faixa")
+
+        if (form.modalidade !== 'Muay Thai' && !form.faixa) {
+            setMensagemErro("Selecione uma faixa");
+            return;
         }
+
         try {
 
             const dadosConvert = {
                 ...form,
                 idade: Number(form.idade),
-                mensalidade: Number(form.mensalidade)
-            }
+                mensalidade: Number(form.mensalidade),
+            };
 
 
-            await apiPublic.post('/alunos/cadastrar', dadosConvert)
+            await apiPublic.post('/alunos/cadastrar', dadosConvert);
 
-            setMensagemSucess('Aluno cadastrado com sucesso!')
-            setTimeout(() => {
-                setMensagemSucess('')
-                // navigate('./alunos')
-            }, 3000)
-
+            setMensagemSucess('Aluno cadastrado com sucesso!');
+            setTimeout(() => setMensagemSucess(''), 3000);
         } catch (err) {
-            if (err.response && err.response && err.response.data.erro) {
-                setMensagemErro(err.response.data.erro)
+            if (err.response?.data?.erro) {
+                setMensagemErro(err.response.data.erro);
             } else {
-                console.error(err)
-                setMensagemErro('Erro ao cadastrar aluno!')
-
-                setTimeout(() => {
-                    setMensagemErro('');
-                }, 3000);
+                console.error(err);
+                setMensagemErro('Erro ao cadastrar aluno!');
             }
 
+            setTimeout(() => setMensagemErro(''), 3000);
         }
-    }
+    };
+
 
 
     const Navigate = useNavigate()
@@ -88,7 +91,7 @@ export default function RegistrarAluno() {
         <div className='main-container-Regis'>
             <Header />
             <h2>Registrar Aluno</h2>
-            <button onClick={alunos} class='btnSair'>Voltar</button>
+            <button onClick={alunos} className='btnSair'>Voltar</button>
 
             {mensagemSucess && <p style={{ color: 'green' }} >{mensagemSucess}</p>}
             {mensagemErro && <p style={{ color: 'red' }}> {mensagemErro}</p>}
@@ -103,40 +106,45 @@ export default function RegistrarAluno() {
                 <label>Email</label>
                 <input type="email" name='email' value={form.email} onChange={handleChange} placeholder='email' required />
 
+
                 <label>telefone</label>
                 <input type="text" name='telefone' value={validarTell(form.telefone)} onChange={handleChange} placeholder='telefone' maxLength={11} required />
 
                 <label>CPF</label>
                 <input type="text" name='cpf' value={form.cpf.replace(/\D/g, '')} onChange={handleChange} placeholder='CPF' required />
 
+                <label>Modalidade</label>
+                <select name='modalidade' value={form.modalidade} onChange={handleChange}>
+                    <option onChange={handleChange} value=''>modalidade</option>
+                    <option value='Jiu-Jitsu'>Jiu-Jitsu</option>
+                    <option value='Muay Thai'>Muay Thai</option>
+                    <option value='No-gi'>No-gi</option>
+                </select>
+
                 <label>faixa</label>
-                <select name='faixa' value={form.faixa} onChange={handleChange}>
-                    <option onChange={handleChange} value=''>faixa</option>
-                    <option value='cinza'>Cinza</option>
+
+
+                <select
+                    name="faixa"
+                    value={form.faixa}
+                    onChange={handleChange}
+                    disabled={form.modalidade === 'Muay Thai'}
+                    className={form.modalidade === 'Muay Thai' ? 'disabled-select' : ''}
+                >
+                    <option onChange={handleChange} value={form.faixa}>faixa</option>
                     <option value='branca'>Branca</option>
-                    <option value='cinzaBranca'>Cinza e Branca</option>
-                    <option value='cinzaPreta'>Cinza e Preta</option>
-                    <option value='cinzaAmarela'>Cinza e Amarela</option>
-                    <option value='amarela'>Amarela</option>
-                    <option value='amarelaPreta'>Amarela e Preta</option>
-                    <option value='laranjaBranca'>Laranja e Branca</option>
-                    <option value='laranja'>Laranja</option>
-                    <option value='laranjaPreta'>Laranja e Preta</option>
-                    <option value='verdeBranca'>Verde e Branca</option>
-                    <option value='verde'>Verde</option>
-                    <option value='verdePreta'>Verde e Preta</option>
                     <option value='azul'>Azul</option>
                     <option value='roxa'>Roxa</option>
                     <option value='marrom'>Marrom</option>
                     <option value='preta'>Preta</option>
-                    <option value='vermelhaPreta'>Vermelha e Preta</option>
-                    <option value='vermelhaBranca'>Vermelha e Branca</option>
-                    <option value='vermelha'>Vermelha</option>
                 </select>
+
 
 
                 <label>Mensalidade</label>
                 <input type="number" name='mensalidade' value={form.mensalidade} onChange={handleChange} placeholder='Mensalidade' required />
+
+
 
                 <label>Data de Cadastro</label>
                 <input type="Date" name='dataCadastro' value={formatarDatas(form.dataCadastro)} onChange={handleChange} placeholder='Data de Cadastro' />

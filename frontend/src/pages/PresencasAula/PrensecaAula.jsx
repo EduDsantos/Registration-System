@@ -6,15 +6,14 @@ import apiPublic from "../../services/apiPublic";
 import "./presencaAula.css";
 
 export default function PresencasAula() {
-  const { id } = useParams(); // ID da aula
+  const { id } = useParams(); 
   const location = useLocation();
   const navigate = useNavigate();
 
-  const aulaInfo = location.state || {}; // dados vindos do navigate
+  const aulaInfo = location.state || {};
   const [alunos, setAlunos] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
 
-  // Buscar alunos da modalidade
   useEffect(() => {
     async function fetchAlunos() {
       try {
@@ -30,7 +29,6 @@ export default function PresencasAula() {
     fetchAlunos();
   }, [aulaInfo.tipo]);
 
-  // Marcar ou desmarcar presença
   function togglePresenca(alunoId) {
     if (selecionados.includes(alunoId)) {
       setSelecionados(prev => prev.filter(id => id !== alunoId));
@@ -39,7 +37,7 @@ export default function PresencasAula() {
     }
   }
 
-  // Enviar presenças para o backend
+ 
   async function salvarPresencas() {
     try {
       const alunosPresentes = alunos
@@ -55,7 +53,7 @@ export default function PresencasAula() {
       });
 
       alert("Presenças salvas com sucesso!");
-      navigate("/aulas"); // ou para onde desejar
+      navigate("/aula"); 
     } catch (error) {
       console.error("Erro ao salvar presenças:", error);
       alert("Erro ao salvar presenças.");

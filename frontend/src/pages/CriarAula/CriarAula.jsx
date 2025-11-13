@@ -30,7 +30,7 @@ export default function CriarAula() {
             alert("✅ Aula criada com sucesso!");
             
             // Redireciona para a tela de presenças
-            navigate(`/aulas/${aulaCriada._id}/presencas`, {
+            navigate(`/aula/${aulaCriada._id}/presencas`, {
                 state: {
                     aulaId: aulaCriada._id,
                     tipo: aulaCriada.tipo,

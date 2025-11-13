@@ -121,6 +121,7 @@ export default function Alunos() {
                                 <th>Idade</th>
                                 <th>Faixa</th>
                                 <th>Email</th>
+                                <th>Modalidade</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -133,6 +134,7 @@ export default function Alunos() {
                                     <td data-label="Idade">{aluno.idade}</td>
                                     <td data-label="Faixa">{aluno.faixa}</td>
                                     <td data-label="Email">{aluno.email}</td>
+                                    <td data-label="Modalidade">{aluno.modalidade}</td>
                                     <td data-label="Ações">
                                         <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
                                         <button onClick={() => DeletarAluno(aluno._id)}>Excluir</button>
