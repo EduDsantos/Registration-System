@@ -2,6 +2,7 @@ const Presenca = require('../Models/aula');
 const Aluno = require('../Models/alunos');
 
 
+
 async function criarAulas(req, res) {
     try {
         console.log("recebendo dados da aula", req.body)
@@ -15,6 +16,19 @@ async function criarAulas(req, res) {
     }
 }
 
+async function listarAulas(req, res) {
+    try {
+        const aulas = await Presenca.find()
+        res.status(200).json(aulas)
+
+    } catch (error) {
+        res.status(400).json({ erro: error.message })
+    }
+}
+
+async function excluirAulas(req, res){
+
+}
 
 async function listarAlunosPorModalidade(req, res) {
     try {
@@ -25,6 +39,7 @@ async function listarAlunosPorModalidade(req, res) {
         res.status(400).json({ erro: error.message });
     }
 }
+
 
 async function marcarPresenca(req, res) {
     try {
@@ -64,7 +79,8 @@ async function marcarPresenca(req, res) {
     }
 }
 module.exports = {
-  criarAulas,
-  listarAlunosPorModalidade,
-  marcarPresenca
+    criarAulas,
+    listarAlunosPorModalidade,
+    marcarPresenca,
+    listarAulas
 };

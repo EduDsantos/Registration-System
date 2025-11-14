@@ -17,10 +17,8 @@ export default function CriarAula() {
         }
 
         try {
-            // Faz o POST para criar a aula
             const response = await apiPublic.post("/aula", { data, horario, tipo });
-            
-            // A resposta do backend é { criarAula: { ... } }
+
             const aulaCriada = response.data.criarAula;
 
             if (!aulaCriada || !aulaCriada._id) {
@@ -28,8 +26,7 @@ export default function CriarAula() {
             }
 
             alert("✅ Aula criada com sucesso!");
-            
-            // Redireciona para a tela de presenças
+
             navigate(`/aula/${aulaCriada._id}/presencas`, {
                 state: {
                     aulaId: aulaCriada._id,
@@ -48,11 +45,13 @@ export default function CriarAula() {
         <>
             <Header />
             <section className="main-content">
+                
                 <div className="form-calendario">
-                    <h2 className="h2Criar">Criar Aula</h2>
 
+            <h2 className="h2Criar">Criar Aula</h2>
                     <label>Data:</label>
                     <input
+
                         type="date"
                         value={data}
                         onChange={e => setData(e.target.value)}
@@ -73,7 +72,7 @@ export default function CriarAula() {
                         <option value="">Selecione</option>
                         <option value="Jiu-Jitsu">Jiu-Jitsu</option>
                         <option value="Muay Thai">Muay Thai</option>
-                        <option value="Boxe">Boxe</option>
+                        <option value="No-Gi">No-Gi</option>
                     </select>
 
                     <button className="btnAula" onClick={criarAula}>

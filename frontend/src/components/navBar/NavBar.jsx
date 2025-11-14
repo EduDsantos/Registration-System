@@ -16,11 +16,11 @@ export default function NavBar() {
 
             <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
                 <li><a href="/dashboard">Visão Geral</a></li>
-                <li><a href="/calendario">Calendario</a></li>
+            
                 <li><a href="/alunos">Lista de Alunos</a></li>
                 <li><a href="/pagamentos">Pagamentos</a></li>
                 <li><a href="/aula">Criar Aula</a></li>
-                {/* <li><a href="/presenca">Criar Aula</a></li> */}
+                <li><a href="/presenca">Presença</a></li>
             </ul>
         </nav>
     )

@@ -64,24 +64,8 @@
   color: #666;
 }
 
-/* cores dos cards */
-.card.green {
-  border-left: 6px solid #28a745;
-}
 
-.card.red {
-  border-left: 6px solid #dc3545;
-}
 
-.card.blue {
-  border-left: 6px solid #007bff;
-}
-
-.card.yellow {
-  border-left: 6px solid #ffc107;
-}
-
-/* área de gráficos */
 .chart-container {
   display: grid;
   align-items: center;

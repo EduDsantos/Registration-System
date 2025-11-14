@@ -1,26 +1,93 @@
+* {
+  font-family: "Roboto", sans-serif;
+
+}
+
 .main-content {
+  width: 100%;
+
+
+}
+
+
+.cardsAula {
+  display: flex;
+  flex-direction: column;
+  background-color: #ddd;
   padding: 30px;
+  height: 100%;
+  width: 1000px;
+  border-radius: 10px;
 }
 
 .h1Presenca {
   text-align: center;
-  margin-bottom: 20px;
+
 }
 
 .info-aula {
   margin-bottom: 30px;
-  background: #f8f8f8;
-  padding: 15px;
+  background: #c4c3c3;
+  padding: 10px;
   border-radius: 8px;
 }
 
+
+.jiu {
+  background-color: #5733ac;
+  padding: 10px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.muay {
+  background-color: #ac3333;
+  padding: 10px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.Nogi {
+  background-color: #92ac33;
+  padding: 10px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.dataFormata {
+  background-color: #636363ab;
+  padding: 15px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.horarioFormata {
+  background-color: #636363ab;
+  padding: 15px;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.info-aula p {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
 .tabela-presenca {
   width: 100%;
+  background: #c4c3c3;
+  border-radius: 10px;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-.tabela-presenca th, .tabela-presenca td {
+.tabela-presenca th,
+.tabela-presenca td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
@@ -30,6 +97,16 @@
   background-color: #4caf50;
   color: white;
   border: none;
+
+  border-radius: 10px;
+}
+
+.marcar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+
+  border-radius: 10px;
 }
 
 .btnSalvar {
