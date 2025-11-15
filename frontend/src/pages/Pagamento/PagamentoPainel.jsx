@@ -87,10 +87,9 @@ export default function Pagamentos() {
           </button>
         </div>
 
-        {/* Pendentes */}
+     
         {abaAtiva === "pendentes" && (
           <>
-            {/* Desktop (tabela) */}
             <table className='table-container desktop-view'>
               <thead>
                 <tr>
@@ -128,7 +127,6 @@ export default function Pagamentos() {
               </tbody>
             </table>
 
-            {/* Mobile (cards) */}
             <div className="cards-container mobile-view">
               {pendentes.map((pagamento) => (
                 <div className="card" key={pagamento._id}>
@@ -157,10 +155,8 @@ export default function Pagamentos() {
           </>
         )}
 
-        {/* Histórico */}
         {abaAtiva === "historico" && (
           <>
-            {/* Desktop */}
             <table className='table-container desktop-view'>
               <thead>
                 <tr>
@@ -187,7 +183,6 @@ export default function Pagamentos() {
               </tbody>
             </table>
 
-            {/* Mobile */}
             <div className="cards-container mobile-view">
               {pagos.map((pagamento) => (
                 <div className="card" key={pagamento._id}>

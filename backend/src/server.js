@@ -28,18 +28,8 @@ app.use('/api/pagamentos', pagamentoRoutes);
 app.use('/api/treinador', treinadorRoutes);
 app.use('/api/auth', authRouters);
 app.use("/api/aula", aulasRoutes);
+app.use("/api/aulas", aulasRoutes);
 
-
-if (process.env.NODE_ENV === "production") {
-  const __dirnameGlobal = path.resolve();
-
-
-  app.use(express.static(path.join(__dirnameGlobal, "../frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirnameGlobal, "../frontend/dist", "index.html"));
-  })
-}
 
 const port = process.env.PORT || 5000
 app.listen(port, () => { console.log(`🚀 Servidor rodando na porta: ${port}`) })

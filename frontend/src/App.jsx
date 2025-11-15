@@ -11,6 +11,7 @@ import DeletarAluno from './pages/Alunos/Alunos'
 
 import CriarAula from './pages/CriarAula/CriarAula'
 import PresencasAula from './pages/PresencasAula/PrensecaAula'
+import Aulas from './pages/listaAulas/Aulas'
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/deletar/:id" element={<DeletarAluno />} />
         <Route path="/aula" element={<CriarAula />} />
         <Route path="/aula/:id/presencas" element={<PresencasAula />} />
+        <Route path="/aulas" element={<Aulas />} />
 
       </Routes>
       <Footer />

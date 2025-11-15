@@ -26,8 +26,17 @@ async function listarAulas(req, res) {
     }
 }
 
-async function excluirAulas(req, res){
+async function excluirAulas(req, res) {
+    try {
+        const { id } = req.params
+        const aulas = await Presenca.findByIdAndDelete(id)
+        if (!aulas) return res.status(404).json({ erro: "Aula não encontrada" })
 
+        res.status(200).json({ mensagem: "Aula deletada com sucesso!" })
+
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao tentar deletar aula!" })
+    }
 }
 
 async function listarAlunosPorModalidade(req, res) {
@@ -82,5 +91,6 @@ module.exports = {
     criarAulas,
     listarAlunosPorModalidade,
     marcarPresenca,
-    listarAulas
+    listarAulas,
+    excluirAulas
 };
