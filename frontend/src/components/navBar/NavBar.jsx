@@ -20,7 +20,7 @@ export default function NavBar() {
                 <li><a href="/alunos">Lista de Alunos</a></li>
                 <li><a href="/pagamentos">Pagamentos</a></li>
                 <li><a href="/aula">Criar Aula</a></li>
-                <li><a href="/presenca">Presença</a></li>
+                <li><a href="/aulas">Histórico</a></li>
             </ul>
         </nav>
     )

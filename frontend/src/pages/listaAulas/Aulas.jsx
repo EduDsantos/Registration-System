@@ -1,77 +1,77 @@
-import Header from "../../components/Header/Header"
-import { useEffect, useState } from "react"
-import "./aulas.css"
-import api from "../../services/api"
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { Navigate, useNavigate } from "react-router-dom";
 
+import "./aulas.css";
+import Header from "../../components/Header/Header";
 
-export default function Aulas() {
+export default function ListaAulas() {
+    const [aulas, setAulas] = useState([]);
+    const navigate = useNavigate();
 
-    const [aulas, setAulas] = useState([])
 
     useEffect(() => {
-        async function fetchAulas() {
-            try {
-                const response = await api.get("/aulas")
-                console.log("RESPOSTA DO BACKEND:", response.data.aulas)
+        buscarAulas();
+    }, []);
 
-                setAulas(response.data.aulas)
-                
-            } catch (error) {
-                console.error("Erro ao buscar aulas:", error)
-            }
+    async function buscarAulas() {
+        try {
+            const res = await api.get("/aulas");
+            setAulas(res.data);
+        } catch (err) {
+            console.log("Erro ao buscar aulas:", err);
         }
-        fetchAulas()
-    }, [])
+    }
 
+    async function apagarAula(id) {
+        if (!window.confirm("Tem certeza que deseja excluir essa aula?")) return;
 
+        try {
+            await api.delete(`/aulas/${id}`);
+            setAulas(aulas.filter(a => a._id !== id));
+        } catch (err) {
+            console.log("Erro ao apagar aula:", err);
+        }
+    }
 
+    function formatarData(d) {
+        return new Date(d).toLocaleDateString("pt-BR");
+    }
 
     return (
-        <section className="aulasMain">
+        <>
             <Header />
+            <div className="lista-aulas-container">
+                <h2>Histórico de Aulas</h2>
 
-            <div className="cardsAulas">
-                <table className="tabela-aulas">
-                    <thead>
-                        <tr>
-                            <th>Modalidade</th>
-                            <th>Data</th>
-                            <th>Presentes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {aulas.map((aula) => (
-                            <tr key={aula._id}>
-                                <td>{aula.tipo}</td>
-
-                                <td>
-                                    {new Date(aula.data).toLocaleDateString("pt-BR", {
-                                        day: "2-digit",
-                                        month: "2-digit",
-                                        year: "numeric",
-                                    })}
-                                </td>
-
-                                <td>{aula.alunosPresentes?.length || 0}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-
-            </div>
-
-
-
-        </section>
-
-    )
-
+                {aulas.map(aula => (
+                    <div
+                        key={aula._id}
+                        className="aula-card"
+                        onClick={() => navigate(`/aulas/${aula._id}`)}
+                    >
+                        {console.log("AULAS:", aulas)
 }
+                        <p><strong>Data:</strong> {formatarData(aula.data)}</p>
+                        <p><strong>Horário:</strong> {aula.horario}</p>
+                        <p><strong>Tipo:</strong> {aula.tipo}</p>
 
+                        <div className="btn-group">
+                            <button className="btn-excluir" onClick={() => apagarAula(aula._id)}>
+                                Excluir
+                            </button>
 
+                            <button
+                                className="btn-ver"
+                                onClick={() => navigate(`/aulas/${aula._id}`)}
+                            >
+                                Ver Aula
+                            </button>
 
-
-
-
-
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </>
+    );
+}

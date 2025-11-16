@@ -12,6 +12,7 @@ import DeletarAluno from './pages/Alunos/Alunos'
 import CriarAula from './pages/CriarAula/CriarAula'
 import PresencasAula from './pages/PresencasAula/PrensecaAula'
 import Aulas from './pages/listaAulas/Aulas'
+import VerAula from './pages/VerAula/VerAula'
 
 
 
@@ -30,6 +31,9 @@ function App() {
         <Route path="/aula" element={<CriarAula />} />
         <Route path="/aula/:id/presencas" element={<PresencasAula />} />
         <Route path="/aulas" element={<Aulas />} />
+        <Route path="/aulas/:id" element={<VerAula />} />
+
+
 
       </Routes>
       <Footer />

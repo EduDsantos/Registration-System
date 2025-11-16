@@ -18,11 +18,11 @@ async function criarAulas(req, res) {
 
 async function listarAulas(req, res) {
     try {
-        const aulas = await Presenca.find()
-        res.status(200).json(aulas)
-
+        const aulas = await Presenca.find().sort({ data: -1, horario: -1 });
+        res.json(aulas);
     } catch (error) {
-        res.status(400).json({ erro: error.message })
+        console.error("Erro ao listar aulas", error);
+        res.status(500).json({ error: "Erro ao buscar aulas" });
     }
 }
 
@@ -48,6 +48,37 @@ async function listarAlunosPorModalidade(req, res) {
         res.status(400).json({ erro: error.message });
     }
 }
+
+async function buscarAula(req, res) {
+    try {
+        const { id } = req.params;
+        const aula = await Presenca.findById(id);
+
+        if (!aula) return res.status(404).json({ error: "Aula não encontrada" });
+
+        res.status(200).json(aula);
+    } catch (error) {
+        res.status(500).json({ error: "Erro ao buscar aula" });
+    }
+}
+
+
+async function buscarAulaPorId(req, res) {
+    try {
+        const { id } = req.params;
+        const aula = await Presenca.findById(id);
+
+        if (!aula) {
+            return res.status(404).json({ erro: "Aula não encontrada" });
+        }
+
+        res.status(200).json(aula);
+    } catch (error) {
+        console.error("Erro ao buscar aula", error);
+        res.status(500).json({ erro: "Erro ao buscar aula" });
+    }
+}
+
 
 
 async function marcarPresenca(req, res) {
@@ -92,5 +123,7 @@ module.exports = {
     listarAlunosPorModalidade,
     marcarPresenca,
     listarAulas,
-    excluirAulas
+    excluirAulas,
+    buscarAula,
+    buscarAulaPorId
 };

@@ -10,7 +10,7 @@ export default function PresencasAula() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const aulaInfo = location.state || {};
+  let aulaInfo = location.state || {};
   const [alunos, setAlunos] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
 
@@ -21,6 +21,14 @@ export default function PresencasAula() {
         const response = await api.get("/alunos");
         const alunosFiltrados = response.data.filter(a => a.modalidade === tipoAula);
         setAlunos(alunosFiltrados);
+        
+        async function buscarAula() {
+          if (!location.state) {
+            const res = await api.get(`/aulas/${id}`);
+            aulaInfo = res.data;
+          }
+        }
+        buscarAula();
       } catch (error) {
         console.error("Erro ao buscar alunos:", error);
       }
@@ -88,7 +96,7 @@ export default function PresencasAula() {
 
         <section className="cardsAula">
           <div className="info-aula">
-      <h1 className="h1Presenca">Registrar Presenças</h1>
+            <h1 className="h1Presenca">Registrar Presenças</h1>
             <label>Dados da Aula</label>
             <p>Modalidade<span className={coresDiferentes(aulaInfo.tipo)}> {aulaInfo.tipo}</span></p>
             <p>Data <span className="dataFormata">{dataPt(aulaInfo.data)}</span></p>
