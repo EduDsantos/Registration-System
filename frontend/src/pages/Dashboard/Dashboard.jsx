@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Users } from "lucide-react"
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, } from "recharts";
+// import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, } from "recharts";
 import "./dashboard.css"
 import Header from "../../components/Header/Header"
 import api from "../../services/api"
@@ -27,8 +27,8 @@ export default function Dashboard() {
         const pendentes = await api.get("/alunos/pagamentos/pendentes");
         setPagPendentes(pendentes.data.total);
 
-        const historicoRes = await api.get("/alunos/matriculas/mensal");
-        setMatriculas(historicoRes.data);
+        // const historicoRes = await api.get("/alunos/matriculas/mensal");
+        // setMatriculas(historicoRes.data);
 
       } catch (err) {
         console.error("Erro ao carregar dashboard", err);
@@ -56,7 +56,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="chart-container">
+        {/* <div className="chart-container">
           <h3>Evolução de Matrículas (Mensal)</h3>
           <BarChart
             width={900}
@@ -71,7 +71,7 @@ export default function Dashboard() {
             <Bar dataKey="matriculas" fill="#8884d8" />
           </BarChart>
 
-        </div>
+        </div> */}
       </div>
     </div>
   )
