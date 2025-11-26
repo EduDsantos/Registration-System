@@ -1,16 +1,14 @@
-/* Tela cheia, centraliza tudo */
 .Container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f172a, #1e293b); /* degrade azul escuro/cinza */
+  background: linear-gradient(135deg, #0f172a, #1e293b); 
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Logo + título */
 .title-container {
   display: flex;
   flex-direction: column;
@@ -28,17 +26,17 @@
   height: 120px;
   object-fit: contain;
   border-radius: 50%;
-  background: white; /* fundo branco arredondado pra destacar a logo */
+  background: white;
   padding: 10px;
 }
 
 .h1Title {
   font-size: 1.8rem;
   font-weight: bold;
-  color: #f8fafc; /* quase branco */
+  color: #f8fafc; 
 }
 
-/* Card do formulário */
+
 .LoginContainer {
   background: white;
   color: #0f172a;
@@ -49,7 +47,7 @@
   max-width: 380px;
 }
 
-/* Inputs */
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -83,7 +81,7 @@
   box-shadow: 0px 0px 6px #3b82f6;
 }
 
-/* Botão */
+
 .btn-container {
   margin-top: 1rem;
 }
@@ -102,12 +100,12 @@
 }
 
 .btnClass:hover {
-  background: #2563eb; /* azul mais escuro */
+  background: #2563eb;
   transform: translateY(-2px);
   box-shadow: 0px 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-/* Mensagem de erro */
+
 p {
   margin-top: 1rem;
   text-align: center;

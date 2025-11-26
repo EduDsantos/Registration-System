@@ -100,6 +100,7 @@ router.get('/', autenticarToken, alunoController.listar)
 router.get('/:id', alunoController.buscarPorId)
 router.put('/editar/:id', alunoController.atualizar)
 router.delete('/deletar/:id', alunoController.deletar)
+router.get('/matriculas/mensal', alunoController.getMatriculasMensal)
 
 module.exports = router
 

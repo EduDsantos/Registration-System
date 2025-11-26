@@ -1,27 +1,41 @@
-import React, { useState } from 'react'
-import './NavBar.css'
+import React, { useState } from "react";
+import "./NavBar.css";
 
 export default function NavBar() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+
     return (
+        <>
+            <button className="hamburger-btn" onClick={() => setOpen(true)}>
+                <span className="material-symbols-outlined">menu</span>
+            </button>
 
-        <nav className="navbar">
+            <div
+                className={`overlay ${open ? "show" : ""}`}
+                onClick={() => setOpen(false)}
+            ></div>
 
-            <span
-                className="menu-icon material-symbols-outlined menu-icon"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                menu
-            </span>
+            <aside className={`side-menu ${open ? "open" : ""}`}>
+                <div className="menu-header">
+                    <h2>Menu</h2>
+                </div>
 
-            <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
-                <li><a href="/dashboard">Visão Geral</a></li>
-            
-                <li><a href="/alunos">Lista de Alunos</a></li>
-                <li><a href="/pagamentos">Pagamentos</a></li>
-                <li><a href="/aula">Criar Aula</a></li>
-                <li><a href="/aulas">Histórico</a></li>
-            </ul>
-        </nav>
-    )
+                <ul>
+                    <li><a href="/dashboard">Visão Geral</a></li>
+                    <li><a href="/alunos">Lista de Alunos</a></li>
+                    <li><a href="/pagamentos">Pagamentos</a></li>
+                    <li><a href="/aula">Criar Aula</a></li>
+                    <li><a href="/aulas">Histórico</a></li>
+                </ul>
+            </aside>
+
+                <ul className="menuDesk">
+                    <li><a href="/dashboard">Visão Geral</a></li>
+                    <li><a href="/alunos">Lista de Alunos</a></li>
+                    <li><a href="/pagamentos">Pagamentos</a></li>
+                    <li><a href="/aula">Criar Aula</a></li>
+                    <li><a href="/aulas">Histórico</a></li>
+                </ul>
+        </>
+    );
 }

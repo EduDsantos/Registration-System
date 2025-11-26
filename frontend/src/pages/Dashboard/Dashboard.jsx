@@ -15,6 +15,7 @@ export default function Dashboard() {
 
   const [matriculas, setMatriculas] = useState([]);
 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -39,10 +40,10 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container">
-        <Header />
-        <Saudacao />
+      <Header />
+      <Saudacao />
       <div className="main-container">
-        
+
         <div className="cards-container">
           <div className="card green">
             <Users size={32} />
@@ -55,7 +56,7 @@ export default function Dashboard() {
             <p>Pagamentos atrasados</p>
           </div>
         </div>
-       
+
         <div className="chart-container">
           <h3>Evolução de Matrículas (Mensal)</h3>
           <ResponsiveContainer width="100%" height={220}>
@@ -67,6 +68,7 @@ export default function Dashboard() {
               <Line type="monotone" dataKey="matriculas" stroke="#82ca9d" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
+            {console.log(matriculas)}
         </div>
       </div>
     </div>

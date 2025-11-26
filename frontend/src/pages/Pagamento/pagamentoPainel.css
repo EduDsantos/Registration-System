@@ -110,21 +110,21 @@ button {
     flex-direction: column;
     gap: 0.6rem;
 
-    /* scroll liberado */
-    max-height: 70vh;   /* diminui pra caber melhor */
+   
+    max-height: 70vh;  
     overflow-y: auto;
 
     padding-right: 8px;
   }
 
-  /* cards ficam 100% dentro do scroll */
+
   .card {
-    background: #1f2937;
+    background: #edf0f3;
     padding: 1.5rem;
     border-radius: 8px;
-    color: white;
+    color: rgb(0, 0, 0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    flex-shrink: 0;  /* impede que o card achate dentro do scroll */
+    flex-shrink: 0;  
   }
 
   .card-actions {
@@ -135,7 +135,7 @@ button {
   }
 }
 
-/* Botões */
+
 .btn {
   border: none;
   padding: 6px 10px;

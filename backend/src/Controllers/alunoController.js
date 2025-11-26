@@ -1,6 +1,7 @@
 const alunoService = require('../Service/alunoService')
 const authService = require('../Service/authService')
 const Pagamento = require('../Models/pagamento')
+const Matricula = require('../Models/matricula')
 
 
 async function criar(req, res) {
@@ -20,13 +21,46 @@ async function criar(req, res) {
 
         })
 
-   
+
         await novoPagamento.save()
 
         res.status(200).json({ aluno, Pagamento: novoPagamento })
 
     } catch (error) {
         res.status(400).json({ erro: error.message })
+    }
+}
+
+async function getMatriculasMensal(req, res) {
+    try {
+        const matriculas = await Matricula.find();
+
+        const meses = [
+            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
+            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+        ];
+
+
+        const dados = Array(12).fill(0);
+
+
+        matriculas.forEach(mat => {
+            const mes = new Date(mat.dataMatricula).getMonth();
+            dados[mes] += 1;
+        });
+
+
+        const response = meses.map((mes, index) => ({
+            mes,
+            matriculas: dados[index]
+        }));
+
+        console.log(response);
+        res.json(response);
+       
+
+    } catch (error) {
+        res.status(500).json({ erro: error.message });
     }
 }
 
@@ -69,5 +103,5 @@ module.exports = {
     buscarPorId,
     atualizar,
     deletar,
-    // getMatriculasMensal
+    getMatriculasMensal
 };

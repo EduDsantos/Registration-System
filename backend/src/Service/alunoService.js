@@ -1,4 +1,5 @@
 const Aluno = require('../Models/alunos')
+const Matricula = require('../Models/matricula')
 
 async function criarAluno(dados) {
     const alunoExistente = await Aluno.findOne({ email: dados.email })
@@ -21,7 +22,7 @@ async function criarAluno(dados) {
         dados.faixa = 'N/A';
     }
 
-    const novoAluno = new Aluno({
+    const novoAluno = await new Aluno({
         name: dados.name,
         idade: dados.idade,
         email: dados.email,
@@ -32,12 +33,15 @@ async function criarAluno(dados) {
         mensalidade: dados.mensalidade,
         modalidade: dados.modalidade,
         pago: dados.pago
+    }).save();
 
-    })
+    await new Matricula({
+        alunoId: novoAluno._id,
+        dataMatricula: new Date()
+    }).save();
 
+    return novoAluno;   
 
-
-    return await novoAluno.save()
 }
 
 async function listarAlunos() {

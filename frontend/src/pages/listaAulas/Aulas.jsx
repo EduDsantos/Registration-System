@@ -67,16 +67,16 @@ export default function ListaAulas() {
                         </div>
 
                         <div className="btn-group">
-                            <button className="btn-excluir" onClick={() => apagarAula(aula._id)}>
-                                Excluir
-                            </button>
-
                             <button
                                 className="btn-ver"
                                 onClick={() => navigate(`/aulas/${aula._id}`)}
                             >
                                 Ver Aula
                             </button>
+                            <button className="btn-excluir" onClick={() => apagarAula(aula._id)}>
+                                Excluir
+                            </button>
+
 
                         </div>
                     </div>
