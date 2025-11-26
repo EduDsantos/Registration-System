@@ -1,6 +1,7 @@
 require("dotenv").config()
 const express = require('express')
 const connectDB = require('./config/dB')
+// const dashboardRoutes = require('./Routes/dashboard')
 const alunosRoutes = require('./Routes/alunosRoutes')
 const treinadorRoutes = require('./Routes/treinadorRoutes')
 const authRouters = require('./Routes/authRouter')
@@ -24,6 +25,7 @@ connectDB()
 require('./Service/cronJobs')
 require('./Service/gerarPagamentos')
 
+// app.use("/api/dashboard", dashboardRoutes);
 app.use('/api/alunos', alunosRoutes);
 app.use('/api/pagamentos', pagamentoRoutes);
 app.use('/api/treinador', treinadorRoutes);

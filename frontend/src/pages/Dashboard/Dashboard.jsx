@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Users } from "lucide-react"
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
-
+import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, } from "recharts";
 import "./dashboard.css"
 import Header from "../../components/Header/Header"
 import api from "../../services/api"
@@ -59,16 +58,19 @@ export default function Dashboard() {
 
         <div className="chart-container">
           <h3>Evolução de Matrículas (Mensal)</h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <LineChart data={matriculas}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="mes" />
-              <YAxis />
-              <Tooltip />
-              <Line type="monotone" dataKey="matriculas" stroke="#82ca9d" strokeWidth={3} />
-            </LineChart>
-          </ResponsiveContainer>
-            {console.log(matriculas)}
+          <BarChart
+            width={900}
+            height={300}
+            data={matriculas}
+            margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3 3" />
+            <XAxis dataKey="mes" />
+            <YAxis />
+            <Tooltip />
+            <Bar dataKey="matriculas" fill="#8884d8" />
+          </BarChart>
+
         </div>
       </div>
     </div>

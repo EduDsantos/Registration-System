@@ -32,35 +32,34 @@ async function criar(req, res) {
 }
 
 async function getMatriculasMensal(req, res) {
-    try {
-        const matriculas = await Matricula.find();
+  try {
+        const resultado = await Aluno.aggregate([
+            {
+                $group: {
+                    _id: { $month: "$dataMatricula" },
+                    total: { $sum: 1 }
+                }
+            },
+            {
+                $sort: { "_id": 1 }
+            }
+        ]);
 
-        const meses = [
+        const mesesPt = [
             "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
             "Jul", "Ago", "Set", "Out", "Nov", "Dez"
         ];
 
-
-        const dados = Array(12).fill(0);
-
-
-        matriculas.forEach(mat => {
-            const mes = new Date(mat.dataMatricula).getMonth();
-            dados[mes] += 1;
-        });
-
-
-        const response = meses.map((mes, index) => ({
-            mes,
-            matriculas: dados[index]
+        const formatado = resultado.map(item => ({
+            mes: mesesPt[item._id - 1],
+            matriculas: item.total
         }));
 
-        console.log(response);
-        res.json(response);
-       
+        res.json(formatado);
 
-    } catch (error) {
-        res.status(500).json({ erro: error.message });
+    } catch (err) {
+        console.error("Erro ao buscar matrículas mensais:", err);
+        res.status(500).json({ error: "Erro no servidor" });
     }
 }
 

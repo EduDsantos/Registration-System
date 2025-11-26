@@ -1,47 +1,64 @@
 // const express = require("express");
-// const Alunos = require("../Models/alunos");
-// const Pagamento = require("../Models/pagamento");
 // const router = express.Router();
+// const Aluno = require("../Models/alunos");
 
-// // GET /dashboard/summary
-// router.get("/dashboard", async (req, res) => {
-//   try {
-//     const totalStudents = await Alunos.countDocuments();
-//     const totalPayments = await Pagamento.countDocuments();
-//     const totalPaid = await Pagamento.countDocuments({ status: "paid" });
-//     const totalPending = await Pagamento.countDocuments({ status: "pending" });
+// // 1. Total de alunos
+// router.get("/total-alunos", async (req, res) => {
+//     const total = await Aluno.countDocuments();
+//     res.json({ total });
+// });
 
-//     // inadimplentes
-//     const overduePayments = await Pagamento.find({ status: "pending" })
-//       .populate("student", "name email");
+// // 2. Matrículas dos últimos 12 meses
+// router.get("/matriculas/12meses", async (req, res) => {
+//     const agora = new Date();
+//     const anoPassado = new Date(agora.getFullYear(), agora.getMonth() - 11, 1);
 
-//     // receita por mês (últimos 12 meses)
-//     const now = new Date();
-//     const pastYear = new Date(now.getFullYear() - 1, now.getMonth() + 1, 1);
-
-//     const revenueByMonth = await Pagamento.aggregate([
-//       { $match: { status: "paid", date: { $gte: pastYear } } },
-//       {
-//         $group: {
-//           _id: { year: { $year: "$date" }, month: { $month: "$date" } },
-//           total: { $sum: "$amount" }
-//         }
-//       },
-//       { $sort: { "_id.year": 1, "_id.month": 1 } }
+//     const result = await Aluno.aggregate([
+//         {
+//             $match: {
+//                 createdAt: { $gte: anoPassado }
+//             }
+//         },
+//         {
+//             $group: {
+//                 _id: {
+//                     ano: { $year: "$createdAt" },
+//                     mes: { $month: "$createdAt" }
+//                 },
+//                 total: { $sum: 1 }
+//             }
+//         },
+//         { $sort: { "_id.ano": 1, "_id.mes": 1 } }
 //     ]);
 
-//     res.json({
-//       totalStudents,
-//       totalPayments,
-//       totalPaid,
-//       totalPending,
-//       overduePayments,
-//       revenueByMonth
+//     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+//     const formatado = result.map(r => ({
+//         mes: meses[r._id.mes - 1],
+//         total: r.total
+//     }));
+
+//     res.json(formatado);
+// });
+
+// // 3. Crescimento do mês
+// router.get("/crescimento", async (req, res) => {
+//     const agora = new Date();
+
+//     const inicioMesAtual = new Date(agora.getFullYear(), agora.getMonth(), 1);
+//     const inicioMesPassado = new Date(agora.getFullYear(), agora.getMonth() - 1, 1);
+
+//     const totalAtual = await Aluno.countDocuments({ createdAt: { $gte: inicioMesAtual } });
+
+//     const totalPassado = await Aluno.countDocuments({
+//         createdAt: { $gte: inicioMesPassado, $lt: inicioMesAtual }
 //     });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "Erro ao carregar dados do dashboard" });
-//   }
+
+//     const crescimento = totalPassado === 0
+//         ? (totalAtual > 0 ? 100 : 0)
+//         : ((totalAtual - totalPassado) / totalPassado) * 100;
+
+//     res.json({ crescimento: crescimento.toFixed(1) });
 // });
 
 // module.exports = router;
