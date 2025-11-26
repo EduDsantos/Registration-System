@@ -15,9 +15,9 @@ export default function VerAula() {
             setAula(res.data);
         }
         carregar();
-        
-    
-    
+
+
+
     }, [id]);
 
 
@@ -25,7 +25,7 @@ export default function VerAula() {
 
 
     if (!aula) return <p>Carregando...</p>;
-  
+
     const dataPt = () => {
         const d = new Date(aula.data);
         const options = {
@@ -59,19 +59,35 @@ export default function VerAula() {
                         <p>Data <span className="dataFormata">{dataPt(aula.data)}</span></p>
                         <p>Horário <span className="horarioFormata">{aula.horario}</span></p>
                     </div>
-                    <h3>Presenças</h3>
-                    {aula.alunosPresentes.length === 0 && (
-                        <p>Nenhum aluno registrado ainda.</p>
-                    )}
-                    {aula.alunosPresentes.map(a => (
-                        <div key={a.id} className="aluno-presenca">
-                            <p><strong>{a.nome}</strong></p>
-                            <p>Presente: {a.presente ? "✔️" : "❌"}</p>
-                        </div>
-                    ))}
+                    <div className="presencaContainer">
+                        <h3>Presenças</h3>
+
+                        {aula.alunosPresentes.length === 0 && (
+                            <p>Nenhum aluno registrado ainda.</p>
+                        )}
+
+                        {aula.alunosPresentes.length > 0 && (
+                            <table className="tabela-presenca">
+                                <thead>
+                                    <tr>
+                                        <th>Aluno</th>
+                                        <th>Presença</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {aula.alunosPresentes.map(a => (
+                                        <tr key={a.id}>
+                                            <td>{a.nome}</td>
+                                            <td>{a.presente ? "✔️" : "❌"}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
+                    </div>
                     <button
                         className="btn-editar"
-                        onClick={() => navigate(`/aulas/${id}/presencas`, { state: aula })}
+                        onClick={() => navigate(`/aula/presencas/${id}`, { state: aula })}
                     >
                         Editar Presenças
                     </button>

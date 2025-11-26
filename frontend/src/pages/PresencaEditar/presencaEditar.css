@@ -78,7 +78,13 @@
 
 
 
-
+.tabela-presenca {
+  width: 100%;
+  background: #c4c3c3;
+  border-radius: 10px;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
 
 .tabela-presenca th,
 .tabela-presenca td {
@@ -110,27 +116,4 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
-}
-
-.tabela-presenca {
-  width: 100%;
-  background: #c4c3c3;
-  border-radius: 10px;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.tabela-presenca th,
-.tabela-presenca td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-tbody td:nth-child(2) {
-  text-align: center;
-}
-
-thead th:nth-child(2) {
-  text-align: center;
 }

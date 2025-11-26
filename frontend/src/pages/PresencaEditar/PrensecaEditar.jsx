@@ -3,9 +3,9 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import api from "../../services/api";
 import apiPublic from "../../services/apiPublic";
-import "./presencaAula.css";
+import "./presencaEditar.css";
 
-export default function PresencasAula() {
+export default function PresencasEditar() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,6 +25,20 @@ export default function PresencasAula() {
           setAulaInfo(res.data);
           tipoAula = res.data.tipo;
         }
+
+
+        const res = await api.get(`/aulas/${id}`);
+        setAulaInfo(res.data);
+
+        if (res.data.alunosPresentes && res.data.alunosPresentes.length > 0) {
+          const presentes = res.data.alunosPresentes
+            .filter(a => a.presente === true)
+            .map(a => a.id);
+
+          setSelecionados(presentes);
+        }
+        let tipoAula = res.data.tipo
+
 
         const resAlunos = await api.get("/alunos");
         const alunosFiltrados = resAlunos.data.filter(a => a.modalidade === tipoAula);
