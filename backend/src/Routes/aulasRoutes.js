@@ -5,9 +5,10 @@ const router = express.Router();
 
 router.post('/', aulasController.criarAulas);
 router.get('/', aulasController.listarAulas);
+router.post('/presencas', aulasController.marcarPresenca);
 
 router.get('/alunos/:tipo', aulasController.listarAlunosPorModalidade);
-router.post('/marcar', aulasController.marcarPresenca);
+
 
 router.get('/:id', aulasController.buscarAulaPorId);
 router.delete('/:id', aulasController.excluirAulas);

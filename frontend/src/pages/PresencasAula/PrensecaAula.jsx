@@ -10,32 +10,33 @@ export default function PresencasAula() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  let aulaInfo = location.state || {};
   const [alunos, setAlunos] = useState([]);
   const [selecionados, setSelecionados] = useState([]);
 
+  const [aulaInfo, setAulaInfo] = useState(location.state || {});
+
   useEffect(() => {
-    async function fetchAlunos() {
+    async function fetchData() {
       try {
-        const tipoAula = aulaInfo.tipo;
-        const response = await api.get("/alunos");
-        const alunosFiltrados = response.data.filter(a => a.modalidade === tipoAula);
-        setAlunos(alunosFiltrados);
-        
-        async function buscarAula() {
-          if (!location.state) {
-            const res = await api.get(`/aulas/${id}`);
-            aulaInfo = res.data;
-          }
+        let tipoAula = aulaInfo.tipo;
+
+        if (!aulaInfo.tipo) {
+          const res = await api.get(`/aulas/${id}`);
+          setAulaInfo(res.data);
+          tipoAula = res.data.tipo;
         }
-        buscarAula();
+
+        const resAlunos = await api.get("/alunos");
+        const alunosFiltrados = resAlunos.data.filter(a => a.modalidade === tipoAula);
+        setAlunos(alunosFiltrados);
+
       } catch (error) {
-        console.error("Erro ao buscar alunos:", error);
+        console.error("Erro:", error);
       }
     }
 
-    fetchAlunos();
-  }, [aulaInfo.tipo]);
+    fetchData();
+  }, [id]);
 
   function togglePresenca(alunoId) {
     if (selecionados.includes(alunoId)) {
@@ -60,13 +61,14 @@ export default function PresencasAula() {
     try {
       const alunosPresentes = alunos
         .filter(a => selecionados.includes(a._id))
-        .map(a => ({ id: a._id, nome: a.name }));
+        .map(a => ({
+          id: a._id,
+          nome: a.name,
+          presente: selecionados.includes(a._id)
+        }));
 
-      await apiPublic.post(`/aula`, {
+      await apiPublic.post(`/aula/presencas`, {
         _id: id,
-        data: aulaInfo.data,
-        horario: aulaInfo.horario,
-        tipo: aulaInfo.tipo,
         alunosPresentes,
       });
 

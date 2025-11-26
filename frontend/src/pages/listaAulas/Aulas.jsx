@@ -24,7 +24,8 @@ export default function ListaAulas() {
     }
 
     async function apagarAula(id) {
-        if (!window.confirm("Tem certeza que deseja excluir essa aula?")) return;
+        const confirmar = window.confirm("Você tem certeza que deseja excluir essa aula?");
+        if (!confirmar) return;
 
         try {
             await api.delete(`/aulas/${id}`);
@@ -48,10 +49,10 @@ export default function ListaAulas() {
                     <div
                         key={aula._id}
                         className="aula-card"
-                        onClick={() => navigate(`/aulas/${aula._id}`)}
+                        // onClick={() => navigate(`/aulas/${aula._id}`)}
                     >
-                        {console.log("AULAS:", aulas)
-}
+
+
                         <p><strong>Data:</strong> {formatarData(aula.data)}</p>
                         <p><strong>Horário:</strong> {aula.horario}</p>
                         <p><strong>Tipo:</strong> {aula.tipo}</p>

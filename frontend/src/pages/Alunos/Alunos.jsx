@@ -31,7 +31,7 @@ export default function Alunos() {
     const navigate = useNavigate()
 
     const DeletarAluno = async (id) => {
-        console.log("tentando deletar o id:", id)
+   
         const confirmar = window.confirm("Você tem certeza que deseja excluir esse aluno?")
         if (!confirmar) return
         try {

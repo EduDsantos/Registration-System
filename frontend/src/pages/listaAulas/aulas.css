@@ -1,14 +1,18 @@
-/* ===== Container geral ===== */
-
 .lista-aulas-container {
     max-width: 900px;
     margin: 30px auto;
     padding: 20px;
     font-family: "Arial", sans-serif;
     color: #222;
+   
+    height: 700px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    scrollbar-width:none ;
 }
 
-/* ===== Título ===== */
+
+
 .lista-aulas-container h2 {
     text-align: center;
     margin-bottom: 25px;
@@ -16,7 +20,6 @@
     color: #333;
 }
 
-/* ===== Cards das aulas ===== */
 .aula-card {
     background: #fff;
     padding: 18px 20px;
@@ -25,6 +28,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     border-left: 6px solid #3f51b5;
     transition: 0.2s;
+    scrollbar-width: auto;
 }
 
 .aula-card:hover {
@@ -32,7 +36,6 @@
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-/* ===== Textos dentro dos cards ===== */
 .aula-card p {
     margin: 5px 0;
     font-size: 16px;
@@ -42,14 +45,12 @@
     color: #222;
 }
 
-/* ===== Container dos botões ===== */
 .aula-card .btn-group {
     margin-top: 12px;
     display: flex;
     gap: 10px;
 }
 
-/* ===== Botões ===== */
 .btn-excluir, .btn-ver {
     padding: 8px 14px;
     border-radius: 6px;
@@ -60,7 +61,6 @@
     transition: 0.2s;
 }
 
-/* Botão excluir */
 .btn-excluir {
     background: #e53935;
     color: white;
@@ -70,7 +70,6 @@
     background: #c62828;
 }
 
-/* Botão ver presença */
 .btn-ver {
     background: #3f51b5;
     color: white;
@@ -80,7 +79,6 @@
     background: #303f9f;
 }
 
-/* ===== Responsividade ===== */
 @media (max-width: 600px) {
     .aula-card {
         padding: 15px;
