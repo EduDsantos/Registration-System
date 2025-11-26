@@ -15,7 +15,7 @@
     font-family: "Roboto", sans-serif;
     margin: auto;
     font-size: 20px;
-    margin-top: 20px;
+    margin:20px auto 20px;
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
@@ -117,9 +117,10 @@ p {
     .container-horizontal td {
         border: none;
         text-align: left;
-        font-size: 15px;
+        font-size: 12px;
         padding: 6px 0;
         display: flex;
+     
         justify-content: space-between;
     }
 

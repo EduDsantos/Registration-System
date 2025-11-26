@@ -31,7 +31,7 @@ export default function Alunos() {
     const navigate = useNavigate()
 
     const DeletarAluno = async (id) => {
-   
+
         const confirmar = window.confirm("Você tem certeza que deseja excluir esse aluno?")
         if (!confirmar) return
         try {
@@ -128,12 +128,13 @@ export default function Alunos() {
                         <tbody className="container-horizontal">
                             {alunos.map((aluno) => (
                                 <tr key={aluno._id}>
+                                    <td data-label="Nome">{aluno.name}</td>
+                                    <td></td>
+                                    <td data-label="Idade">{aluno.idade}</td>
                                     <td data-label="CPF">{formatCpf(aluno.cpf)}</td>
                                     <td data-label="Telefone">{formatarCell(aluno.telefone)}</td>
-                                    <td data-label="Nome">{aluno.name}</td>
-                                    <td data-label="Idade">{aluno.idade}</td>
-                                    <td data-label="Faixa">{aluno.faixa}</td>
                                     <td data-label="Email">{aluno.email}</td>
+                                    <td data-label="Faixa">{aluno.faixa}</td>
                                     <td data-label="Modalidade">{aluno.modalidade}</td>
                                     <td data-label="Ações">
                                         <button onClick={() => EditarAluno(aluno._id)}>Editar</button>
@@ -144,7 +145,7 @@ export default function Alunos() {
                         </tbody>
                     </table>
                 )}
-                
+
             </div>
         </div>
     );

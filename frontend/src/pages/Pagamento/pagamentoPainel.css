@@ -121,6 +121,9 @@ button {
   .card {
     background: #ffffff;
     padding: 1.5rem;
+ 
+   
+    margin: 10px auto;
     border-radius: 8px;
     color: rgb(0, 0, 0);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -146,14 +149,17 @@ button {
 
 .btn.green {
   background: #4CAF50;
+
 }
 
 .btn.red {
   background: #f44336;
+  margin: auto;
 }
 
 .btn.orange {
   background: #ff9800;
+  margin: auto;
 }
 
 .btn:disabled {
