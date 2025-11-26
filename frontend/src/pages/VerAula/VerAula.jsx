@@ -60,7 +60,7 @@ export default function VerAula() {
                         <p>Horário <span className="horarioFormata">{aula.horario}</span></p>
                     </div>
                     <div className="presencaContainer">
-                        <h3>Presenças</h3>
+                        <h3 className="h3Presenca">Presenças</h3>
 
                         {aula.alunosPresentes.length === 0 && (
                             <p>Nenhum aluno registrado ainda.</p>
@@ -70,7 +70,7 @@ export default function VerAula() {
                             <table className="tabela-presenca">
                                 <thead>
                                     <tr>
-                                        <th>Aluno</th>
+                                        <th>Alunos</th>
                                         <th>Presença</th>
                                     </tr>
                                 </thead>

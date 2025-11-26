@@ -29,16 +29,16 @@ export default function PresencasEditar() {
 
         const res = await api.get(`/aulas/${id}`);
         setAulaInfo(res.data);
-
+        
         if (res.data.alunosPresentes && res.data.alunosPresentes.length > 0) {
           const presentes = res.data.alunosPresentes
-            .filter(a => a.presente === true)
-            .map(a => a.id);
-
+          .filter(a => a.presente === true)
+          .map(a => a.id);
+          
           setSelecionados(presentes);
         }
-        let tipoAula = res.data.tipo
-
+        
+        tipoAula = res.data.tipo;
 
         const resAlunos = await api.get("/alunos");
         const alunosFiltrados = resAlunos.data.filter(a => a.modalidade === tipoAula);
@@ -86,7 +86,7 @@ export default function PresencasEditar() {
       });
 
       alert("Presenças salvas com sucesso!");
-      navigate("/aula");
+      navigate("/aulas");
     } catch (error) {
       console.error("Erro ao salvar presenças:", error);
       alert("Erro ao salvar presenças.");
@@ -122,7 +122,7 @@ export default function PresencasEditar() {
               <tr>
                 <th>Nome</th>
                 <th>Faixa</th>
-                <th>Presente?</th>
+                <th>Preseça</th>
               </tr>
             </thead>
             <tbody>

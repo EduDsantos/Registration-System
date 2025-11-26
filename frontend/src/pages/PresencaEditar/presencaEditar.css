@@ -90,6 +90,14 @@
 .tabela-presenca td {
   border: 1px solid #ddd;
   padding: 10px;
+  text-align: left;
+}
+
+tbody td:nth-child(2) {
+  text-align: center;
+}
+
+thead th:nth-child(2) {
   text-align: center;
 }
 

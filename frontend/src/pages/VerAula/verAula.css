@@ -77,6 +77,10 @@
 }
 
 
+.h3Presenca {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
 
 
@@ -104,6 +108,15 @@
 }
 
 .btnSalvar {
+  background: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-editar {
   background: #007bff;
   color: white;
   padding: 12px 20px;

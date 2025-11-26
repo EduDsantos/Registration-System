@@ -103,12 +103,13 @@ export default function PresencasAula() {
             <p>Data <span className="dataFormata">{dataPt(aulaInfo.data)}</span></p>
             <p>Horário <span className="horarioFormata">{aulaInfo.horario}</span></p>
           </div>
+
           <table className="tabela-presenca">
             <thead>
               <tr>
                 <th>Nome</th>
                 <th>Faixa</th>
-                <th>Presente?</th>
+                <th>Presença</th>
               </tr>
             </thead>
             <tbody>

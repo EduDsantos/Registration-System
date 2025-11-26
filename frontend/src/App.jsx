@@ -33,7 +33,7 @@ function App() {
         <Route path="/aula/:id/presencas" element={<PresencasAula />} />
         <Route path="/aulas" element={<Aulas />} />
         <Route path="/aulas/:id" element={<VerAula />} />
-        <Route path="/aulas/presencas/:id" element={<PresencasEditar />} />
+        <Route path="/aula/presencas/:id" element={<PresencasEditar />} />
 
 
 

@@ -38,7 +38,14 @@ export default function ListaAulas() {
     function formatarData(d) {
         return new Date(d).toLocaleDateString("pt-BR");
     }
-
+    const coresDiferentes = (m) => {
+        switch (m) {
+            case "Jiu-Jitsu": return "jiu";
+            case "Muay Thai": return "muay";
+            case "No-Gi": return "Nogi";
+            default: return "";
+        }
+    }
     return (
         <>
             <Header />
@@ -49,13 +56,15 @@ export default function ListaAulas() {
                     <div
                         key={aula._id}
                         className="aula-card"
-                        // onClick={() => navigate(`/aulas/${aula._id}`)}
+                    // onClick={() => navigate(`/aulas/${aula._id}`)}
                     >
 
 
-                        <p><strong>Data:</strong> {formatarData(aula.data)}</p>
-                        <p><strong>Horário:</strong> {aula.horario}</p>
-                        <p><strong>Tipo:</strong> {aula.tipo}</p>
+                        <div className="dadosAulas">
+                            <p><strong>Data:</strong> {formatarData(aula.data)}</p>
+                            <p><strong>Modalidade: </strong><span className={coresDiferentes(aula.tipo)}> {aula.tipo}</span></p>
+                            <p><strong>Horário:</strong> {aula.horario}</p>
+                        </div>
 
                         <div className="btn-group">
                             <button className="btn-excluir" onClick={() => apagarAula(aula._id)}>
