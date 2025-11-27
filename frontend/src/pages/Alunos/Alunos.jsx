@@ -115,12 +115,13 @@ export default function Alunos() {
                     <table className="tabela-container">
                         <thead className="container-vertical">
                             <tr>
+                                <th>Nome</th>
+                                <th></th>
+                                <th>Idade</th>
                                 <th>Cpf</th>
                                 <th>Telefone</th>
-                                <th>Nome</th>
-                                <th>Idade</th>
-                                <th>Faixa</th>
                                 <th>Email</th>
+                                <th>Faixa</th>
                                 <th>Modalidade</th>
                                 <th>Ações</th>
                             </tr>

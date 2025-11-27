@@ -100,13 +100,15 @@ button {
 }
 
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .desktop-view {
     display: none;
   }
 
   .mobile-view {
     display: flex;
+    width: 300px;
+    margin: auto;
     flex-direction: column;
     gap: 0.6rem;
 

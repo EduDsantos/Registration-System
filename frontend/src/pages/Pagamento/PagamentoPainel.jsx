@@ -127,7 +127,7 @@ export default function Pagamentos() {
               </tbody>
             </table>
 
-            <div className="cards-container">
+            <div className="cards-container mobile-view">
               {pendentes.map((pagamento) => (
                 <div className="card" key={pagamento._id}>
                   <p><strong>Aluno:</strong> {pagamento.alunoId?.name || 'Desconhecido'}</p>
@@ -183,7 +183,7 @@ export default function Pagamentos() {
               </tbody>
             </table>
 
-            <div className="cards-container">
+            <div className="cards-container mobile-view">
               {pagos.map((pagamento) => (
                 <div className="card" key={pagamento._id}>
                   <p><strong>Aluno:</strong> {pagamento.alunoId?.name || 'Desconhecido'}</p>
